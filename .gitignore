@@ -1,0 +1,11 @@
+# Polaris / legacy - do not re-add
+assets/
+
+# Large videos - keep locally, don't commit
+vids/peg_realworld_robustness.mp4
+openpi/
+reconstruction/
+reconstruction_input_videos/
+
+# OS
+.DS_Store
