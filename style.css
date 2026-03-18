@@ -47,13 +47,27 @@ body {
     radial-gradient(ellipse 80% 50% at 100% 50%, rgba(147, 51, 234, 0.03) 0%, transparent 50%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-primary);
-  padding: 48px 28px 48px 28px;
+  padding: 88px 28px 48px 28px;
   position: relative;
   min-height: 100vh;
   line-height: 1.7;
   font-size: 15px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+}
+
+.wip-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: #dc2626;
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 /* Clean modern headings */
