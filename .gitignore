@@ -8,6 +8,10 @@ vids/drawer/3_16_drawer_failures.mp4
 vids/leg/3_16_leg_eval_highlights.mp4
 vids/leg/3_16_leg_failures.mp4
 vids/peg/3_16_peg_eval_highlights.mp4
+
+# Full-length videos (too large for GitHub)
+vids/peg/full/
+vids/leg/full/
 openpi/
 reconstruction/
 reconstruction_input_videos/
