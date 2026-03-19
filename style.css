@@ -993,6 +993,24 @@ a#figure-3-img img {
   box-shadow: var(--shadow-sm);
 }
 
+/* Reset Distributions Plots */
+.reset-distributions-plots {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.reset-plot-item {
+  width: 100%;
+  text-align: center;
+}
+
+.reset-plot-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 /* Pipeline Grid */
 .pipeline-grid {
   display: grid;
