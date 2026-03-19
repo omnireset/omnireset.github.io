@@ -3,6 +3,11 @@ assets/
 
 # Large videos - keep locally, don't commit
 vids/peg_realworld_robustness.mp4
+vids/drawer/3_16_drawer_eval_highlights.mp4
+vids/drawer/3_16_drawer_failures.mp4
+vids/leg/3_16_leg_eval_highlights.mp4
+vids/leg/3_16_leg_failures.mp4
+vids/peg/3_16_peg_eval_highlights.mp4
 openpi/
 reconstruction/
 reconstruction_input_videos/
