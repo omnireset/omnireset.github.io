@@ -50,6 +50,12 @@
           <span class="progress-label">Pipeline</span>
         </a>
       </div>
+      <div class="progress-item" data-section="reset-distributions">
+        <a href="#reset-distributions">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Reset Distributions</span>
+        </a>
+      </div>
       <div class="progress-item" data-section="expert-policies">
         <a href="#expert-policies">
           <span class="progress-dot"></span>
@@ -133,28 +139,66 @@
       </div>
     </div>
 
-    <div class="tagline" id="real-world-results">Real World RL Results</div>
-    <div class="card-surface real-world-results-box">
-      <div class="real-world-videos-row">
-        <div class="real-world-video-item">
-          <h4 class="real-world-video-title">Dresser Assembly</h4>
-          <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+    <div class="card-surface real-world-results-box" id="real-world-results">
+      <p class="real-world-common-caption real-world-caption-top">OmniReset is a scalable sim-to-real framework that leverages large scale reinforcement learning and carefully designed reset distributions to make training dexterous, long-horizon manipulation policies easy. We distill these state-based expert policies into deployable policies which act directly from three raw camera inputs (shown on the right below). The resulting policies can robustly solve the task from significantly wider ranges of initial conditions than prior methods, establishing a new standard for robust, contact-rich manipulation.</p>
+      <div class="real-world-sim-real-grid">
+        <div class="real-world-grid-header sim-col">Sim Expert</div>
+        <div class="real-world-grid-header real-col">Real World</div>
+
+        <div class="real-world-grid-row">
+          <div class="real-world-grid-cell">
+            <h4 class="real-world-video-title">Table Assembly</h4>
+            <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="real-world-grid-cell">
+            <h4 class="real-world-video-title">Table Assembly</h4>
+            <video src="./vids/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
         </div>
-        <div class="real-world-video-item">
-          <h4 class="real-world-video-title">Table Assembly</h4>
-          <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="real-world-grid-row">
+          <div class="real-world-grid-cell">
+            <h4 class="real-world-video-title">Peg Insertion</h4>
+            <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="real-world-grid-cell">
+            <h4 class="real-world-video-title">Peg Insertion</h4>
+            <video src="./vids/peg/3_16_peg_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
         </div>
-        <div class="real-world-video-item">
-          <h4 class="real-world-video-title">Peg Insertion</h4>
-          <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="real-world-grid-row">
+          <div class="real-world-grid-cell">
+            <h4 class="real-world-video-title">Drawer Assembly</h4>
+            <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="real-world-grid-cell">
+            <h4 class="real-world-video-title">Drawer Assembly</h4>
+            <video src="./vids/drawer/3_16_drawer_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
         </div>
       </div>
-      <p class="real-world-common-caption">OmniReset is a scalable sim-to-real framework that leverages large scale reinforcement learning and carefully designed reset distributions to make training dexterous, long-horizon manipulation policies easy. We transfer these policies to the real world zero-shot, where they use diverse strategies to solve challenging assembly problems.</p>
     </div>
 
     <div class="card-surface real-world-results-box real-world-robustness-box">
-      <div class="real-world-single-video">
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+      <h4 class="real-world-robustness-title">Robustness to Perturbations</h4>
+      <div class="real-world-two-column">
+        <div class="real-world-column">
+          <h4 class="real-world-column-title">Peg Insertion</h4>
+          <div class="real-world-column-video">
+            <video src="./vids/peg/3_16_peg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="real-world-column-video">
+            <video src="./vids/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+        </div>
+        <div class="real-world-column">
+          <h4 class="real-world-column-title">Table Assembly</h4>
+          <div class="real-world-column-video">
+            <video src="./vids/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+          <div class="real-world-column-video">
+            <video src="./vids/leg/3_16_leg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          </div>
+        </div>
       </div>
       <p class="real-world-common-caption">The policies display impressive robustness properties, and are able to recover and effectively retry the task after making mistakes or being perturbed.</p>
     </div>
@@ -241,6 +285,11 @@
           preload="metadata"></video>
         <p>Robust zeroshot transfer of precise manipulation policies which just work from wide ranges of initial conditions.</p>
       </div>
+    </div>
+
+    <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
+    <div class="card-surface">
+      <!-- Content goes here -->
     </div>
 
     <div class="tagline" id="expert-policies">OmniReset Expert Policies</div>
