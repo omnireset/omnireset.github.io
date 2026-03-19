@@ -8,14 +8,6 @@
   <link rel="icon" href="./figs/logo.png" type="image/png">
   <link rel="stylesheet" href="style.css?v=2">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-      }
-    }
-  </script>
   <script>
     window.MathJax = {
       tex: {
@@ -278,13 +270,36 @@
       </div>
     </div> -->
 
-    <!-- <div class="card-surface reconstruction-split-section">
-      <div class="section-heading">Josh's Interactive Demo</div>
+    <div class="card-surface reconstruction-split-section">
+      <div class="section-heading">Interactive Demo</div>
 
-      <div class="josh-demo-placeholder" style="min-height: 300px; padding: 48px; text-align: center; color: var(--text-muted);">
+      <script type="importmap">
+        {
+            "imports": {
+                "three": "https://esm.sh/three@r170",
+                "three/addons/loaders/HDRLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/HDRLoader.js",
+                "three/addons/loaders/GLTFLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/GLTFLoader.js",
+                "three/addons/controls/OrbitControls.js": "https://esm.sh/three@r170/examples/jsm/controls/OrbitControls.js"
+            }
+        }
+        </script>
+        <script type="module" src="main.js"></script>
+
+      <div class="demo-tab-bar">
+        <button class="demo-tab active" data-task="peg">Peg</button>
+        <button class="demo-tab" data-task="leg">Leg</button>
+        <button class="demo-tab" data-task="drawer">Drawer</button>
+      </div>
+      <div id="interactive-demo-container"></div>
+      <div class="demo-controls">
+        <div class="demo-buttons">
+          <button id="playTrajectory" class="demo-btn demo-btn-primary">Play trajectory</button>
+          <button id="disturb" class="demo-btn demo-btn-secondary">Disturb</button>
+        </div>
       </div>
 
-    </div> -->
+    </div>
+
 
     <!-- <div class="tagline" id="results">Results</div>
     <div class="card-surface scatter-card">
@@ -311,7 +326,6 @@
       target="_blank">here</a>.
   </div>
 
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script>
     // Progress Sidebar
     document.addEventListener('DOMContentLoaded', () => {
