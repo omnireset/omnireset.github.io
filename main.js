@@ -295,14 +295,12 @@ function getActiveTask() {
     return active?.dataset.task || 'peg';
 }
 taskTabBar?.querySelectorAll('.demo-tab').forEach((tab) => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener('click', async () => {
         taskTabBar.querySelectorAll('.demo-tab').forEach((t) => t.classList.remove('active'));
         tab.classList.add('active');
         const taskId = tab.dataset.task;
         if (playWebSocket) {
-            if (playWebSocket.readyState === WebSocket.OPEN) {
-                playWebSocket.send(JSON.stringify({ command: 'stop' }));
-            }
+            await sendPbStop(playWebSocket);
             playWebSocket.close();
             playWebSocket = null;
         }
@@ -395,6 +393,35 @@ const ARM_LINK_NAMES = [
 const ARM_LINK_STATE_KEYS = ARM_LINK_NAMES.flatMap(link =>
     [`${link}_x`, `${link}_y`, `${link}_z`, `${link}_qw`, `${link}_qx`, `${link}_qy`, `${link}_qz`]
 );
+// Full state key order (must match server STATE_KEYS / omnireset.proto State.values)
+const STATE_KEYS = [
+    ...ARM_LINK_STATE_KEYS,
+    'ins_x', 'ins_y', 'ins_z', 'ins_qw', 'ins_qx', 'ins_qy', 'ins_qz',
+    'rec_x', 'rec_y', 'rec_z', 'rec_qw', 'rec_qx', 'rec_qy', 'rec_qz',
+];
+
+let _pbTypes = null;
+async function getPbTypes() {
+    if (_pbTypes) return _pbTypes;
+    const mod = await import('protobufjs');
+    const protobuf = mod.default ?? mod;
+    const protoText = await (await fetch('./proto/omnireset.proto')).text();
+    const root = protobuf.parse(protoText).root;
+    _pbTypes = {
+        ClientToServer: root.lookupType('omnireset.ClientToServer'),
+        ServerToClient: root.lookupType('omnireset.ServerToClient'),
+    };
+    return _pbTypes;
+}
+
+async function sendPbStop(ws) {
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    try {
+        const pb = await getPbTypes();
+        const msg = pb.ClientToServer.create({ stop: {} });
+        ws.send(pb.ClientToServer.encode(msg).finish());
+    } catch (e) {}
+}
 
 class UR5eRobot extends Asset {
     constructor(robot_cfg) {
@@ -576,79 +603,84 @@ function ensureEnvReady() {
 
 ensureEnvReady().then(() => env.reset(DEFAULT_INITIAL_STATE));
 
-function playTrajectory() {
+async function playTrajectory() {
     if (playWebSocket) {
-        if (playWebSocket.readyState === WebSocket.OPEN) {
-            playWebSocket.send(JSON.stringify({ command: 'stop' }));
-        }
+        await sendPbStop(playWebSocket);
         playWebSocket.close();
         playWebSocket = null;
     }
     env.stop();
-    ensureEnvReady().then(() => {
-        env.setSetpointIntervalMs(STREAMING_SETPOINT_INTERVAL_MS);
-        const wsUrl = API_BASE_URL.replace(/^http/, 'ws');
-        const ws = new WebSocket(`${wsUrl}/ws/play`);
-        playWebSocket = ws;
-        const taskId = getActiveTask();
-        let first = true;
-        ws.onopen = () => ws.send(JSON.stringify({ command: 'play', task: taskId }));
-        ws.onmessage = async (event) => {
-            if (playWebSocket !== ws) return;
-            let row;
-            try {
-                const data = event.data;
-                const isBinary = typeof data !== 'string' &&
-                    (data instanceof ArrayBuffer ||
-                     data instanceof Blob ||
-                     (typeof data.arrayBuffer === 'function'));
-                if (isBinary) {
-                    const buffer = typeof data.arrayBuffer === 'function'
-                        ? await data.arrayBuffer()
-                        : data;
-                    const blob = new Blob([buffer]);
-                    const ds = new DecompressionStream('gzip');
-                    const decompressed = await new Response(blob.stream().pipeThrough(ds)).arrayBuffer();
-                    const str = new TextDecoder().decode(decompressed);
-                    row = JSON.parse(str);
-                } else {
-                    row = JSON.parse(data);
+    const [, pb] = await Promise.all([ensureEnvReady(), getPbTypes()]);
+    env.setSetpointIntervalMs(STREAMING_SETPOINT_INTERVAL_MS);
+    const wsUrl = API_BASE_URL.replace(/^http/, 'ws');
+    const ws = new WebSocket(`${wsUrl}/ws/play`);
+    playWebSocket = ws;
+    ws.binaryType = 'arraybuffer';
+    const taskId = getActiveTask();
+    let first = true;
+    ws.onopen = () => {
+        const playReq = { playRequest: { task: taskId } };
+        const err = pb.ClientToServer.verify(playReq);
+        if (err) return;
+        const msg = pb.ClientToServer.create(playReq);
+        ws.send(pb.ClientToServer.encode(msg).finish());
+    };
+    ws.onmessage = (event) => {
+        if (playWebSocket !== ws) return;
+        let row;
+        try {
+            const buf = new Uint8Array(event.data);
+            const serverMsg = pb.ServerToClient.decode(buf);
+            if (serverMsg.errorMsg) {
+                row = { error: serverMsg.errorMsg.message };
+            } else if (serverMsg.complete) {
+                row = { complete: true };
+            } else if (serverMsg.state) {
+                const vals = serverMsg.state.values || [];
+                row = {};
+                for (let i = 0; i < STATE_KEYS.length; i++) {
+                    row[STATE_KEYS[i]] = i < vals.length ? vals[i] : 0;
                 }
-            } catch (e) {
+            } else {
                 return;
             }
-            try {
-                if (row && row.error) return;
-                if (row && row.complete) {
-                    env.stop();
-                    return;
+        } catch (e) {
+            return;
+        }
+        try {
+            if (row && row.error) return;
+            if (row && row.complete) {
+                env.stop();
+                return;
+            }
+            if (first) {
+                if (row && typeof row === 'object' && 'shoulder_link_x' in row) {
+                    env.reset(row);
+                    first = false;
                 }
-                if (first) {
-                    if (row && typeof row === 'object' && 'shoulder_link_x' in row) {
-                        env.reset(row);
-                        first = false;
-                    }
-                } else {
-                    env.commandSetpoints(row);
-                }
-            } catch (e) {}
-        };
-        ws.onclose = () => {
-            first = true;
-            if (playWebSocket === ws) playWebSocket = null;
-        };
-        ws.onerror = () => {
-            if (playWebSocket === ws) playWebSocket = null;
-        };
-    });
+            } else {
+                env.commandSetpoints(row);
+            }
+        } catch (e) {}
+    };
+    ws.onclose = () => {
+        first = true;
+        if (playWebSocket === ws) playWebSocket = null;
+    };
+    ws.onerror = () => {
+        if (playWebSocket === ws) playWebSocket = null;
+    };
 }
 
 document.getElementById("playTrajectory").addEventListener("click", playTrajectory);
 
-document.getElementById("disturb").addEventListener("click", () => {
-    if (playWebSocket && playWebSocket.readyState === WebSocket.OPEN) {
-        playWebSocket.send(JSON.stringify({ command: 'disturb' }));
-    }
+document.getElementById("disturb").addEventListener("click", async () => {
+    if (!playWebSocket || playWebSocket.readyState !== WebSocket.OPEN) return;
+    try {
+        const pb = await getPbTypes();
+        const msg = pb.ClientToServer.create({ disturb: {} });
+        playWebSocket.send(pb.ClientToServer.encode(msg).finish());
+    } catch (e) {}
 });
 
 // Reusable temporaries for world-to-local conversion (insertive/receptive objects)
