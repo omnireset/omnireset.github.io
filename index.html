@@ -8,14 +8,6 @@
   <link rel="icon" href="./figs/logo.png" type="image/png">
   <link rel="stylesheet" href="style.css?v=2">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
-      }
-    }
-  </script>
   <script>
     window.MathJax = {
       tex: {
@@ -27,6 +19,7 @@
 </head>
 
 <body>
+  <div class="wip-banner" role="alert">This website is still a work in progress.</div>
   <!-- Progress Sidebar -->
   <nav class="progress-sidebar" aria-label="Page progress">
     <div class="progress-track">
@@ -105,7 +98,7 @@
       </div>
 
       <div class="hero-actions">
-        <a class="cta primary" href="https://arxiv.org/abs/2512.16881" target="_blank">
+        <a class="cta primary" href="https://arxiv.org/abs/2603.15789" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"
             style="vertical-align: -2px; margin-right: 6px;">
             <path
@@ -260,7 +253,7 @@
       </div> 
     </div> -->
 
-    <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
+    <!-- <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
     <div class="pipeline-grid card-surface">
       <div class="pipeline-card">
         <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
@@ -285,7 +278,7 @@
           preload="metadata"></video>
         <p>Robust zeroshot transfer of precise manipulation policies which just work from wide ranges of initial conditions.</p>
       </div>
-    </div>
+    </div> -->
 
     <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
     <div class="card-surface">
@@ -324,13 +317,35 @@
         <video src="./vids/Distillation_video.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p class="expert-policy-caption">Put the cupcake on the plate.</p>
       </div>
-    </div>
+    </div> -->
 
     <div class="card-surface reconstruction-split-section">
-      <div class="section-heading">Josh's Interactive Demo</div>
+      <div class="section-heading">Interactive Demo</div>
 
-      <div class="josh-demo-placeholder" style="min-height: 300px; padding: 48px; text-align: center; color: var(--text-muted);">
-        <!-- Demo content goes here -->
+      <script type="importmap">
+        {
+            "imports": {
+                "three": "https://esm.sh/three@r170",
+                "three/addons/loaders/HDRLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/HDRLoader.js",
+                "three/addons/loaders/GLTFLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/GLTFLoader.js",
+                "three/addons/controls/OrbitControls.js": "https://esm.sh/three@r170/examples/jsm/controls/OrbitControls.js",
+                "protobufjs": "https://esm.sh/protobufjs@7.4.0"
+            }
+        }
+        </script>
+        <script type="module" src="main.js"></script>
+
+      <div class="demo-tab-bar">
+        <button class="demo-tab active" data-task="peg">Peg</button>
+        <button class="demo-tab" data-task="leg">Leg</button>
+        <button class="demo-tab" data-task="drawer">Drawer</button>
+      </div>
+      <div id="interactive-demo-container"></div>
+      <div class="demo-controls">
+        <div class="demo-buttons">
+          <button id="playTrajectory" class="demo-btn demo-btn-primary">Play trajectory</button>
+          <button id="disturb" class="demo-btn demo-btn-secondary">Disturb</button>
+        </div>
       </div>
 
     </div>
@@ -351,25 +366,24 @@
     <div class="tagline" id="bibtex">BibTeX</div>
     <div class="bibtex-code">
       <div class="bibtex-title">Reference</div>
-      <pre><code>@misc{jain2025polarisscalablerealtosimevaluations,
-      title={PolaRiS: Scalable Real-to-Sim Evaluations for Generalist Robot Policies}, 
-      author={Arhan Jain and Mingtong Zhang and Kanav Arora and William Chen and Marcel Torne and Muhammad Zubair Irshad and Sergey Zakharov and Yue Wang and Sergey Levine and Chelsea Finn and Wei-Chiu Ma and Dhruv Shah and Abhishek Gupta and Karl Pertsch},
-      year={2025},
-      eprint={2512.16881},
-      archivePrefix={arXiv},
-      primaryClass={cs.RO},
-      url={https://arxiv.org/abs/2512.16881}, 
-}
+      <pre><code>@misc{yin2026emergentdexteritydiverseresets,
+        title={Emergent Dexterity via Diverse Resets and Large-Scale Reinforcement Learning}, 
+        author={Patrick Yin and Tyler Westenbroek and Zhengyu Zhang and Joshua Tran and Ignacio Dagnino and Eeshani Shilamkar and Numfor Mbiziwo-Tiapo and Simran Bagaria and Xinlei Liu and Galen Mullins and Andrey Kolobov and Abhishek Gupta},
+        year={2026},
+        eprint={2603.15789},
+        archivePrefix={arXiv},
+        primaryClass={cs.RO},
+        url={https://arxiv.org/abs/2603.15789}, 
+  }
       </code></pre>
     </div>
   </div>
 
   <div class="footer">
-    © PolaRiS team. Source code is available <a href="https://github.com/polaris-evals/polaris-evals.github.io"
+    © OmniReset team. Source code is available <a href="https://github.com/omnireset/omnireset.github.io"
       target="_blank">here</a>.
   </div>
 
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <script>
     // Progress Sidebar
     document.addEventListener('DOMContentLoaded', () => {
