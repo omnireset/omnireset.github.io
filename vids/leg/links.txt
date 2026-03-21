@@ -1,0 +1,73 @@
+
+
+
+Sim eval videos:
+
+Cube stacking: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cube_stacking_cut.mp4
+Cupcake on plate: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cupcake_cut.mp4
+Drawer: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4
+Leg: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4
+Peg: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4
+Rectangle on wall: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/rectangle_cut.mp4
+
+
+
+Reset Distributions:
+
+Reaching: https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4
+Near object: https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4
+Near object (object fixed): https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_fixed.mp4
+Grasped: https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4
+Grasped (object fixed): https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4
+Near goal: https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4
+Near goal (object fixed): https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4
+
+
+Progress video:
+https://omnireset-website.s3.us-west-004.backblazeb2.com/progress/Progression+simple.mp4
+
+Plots:
+Scatter: https://f004.backblazeb2.com/file/omnireset-website/Plots/Baselines_scatter_plot.png
+Baseline 3x3: https://omnireset-website.s3.us-west-004.backblazeb2.com/Plots/baselines_3x3_grid-1.png
+NG+Reaching:
+https://f004.backblazeb2.com/file/omnireset-website/Plots/leg_NG_reaching-1.png
+
+Pipeline videos:
+
+Step 1:
+https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4
+Step 2: https://omnireset-website.s3.us-west-004.backblazeb2.com/RL+Training/Screencast+from+03-20-2026+05_54_52+PM.mp4
+Step 3: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_distillation_videos/policy_cameras_leg.mp4
+Step 4: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4 
+
+Real Eval Videos:
+
+Leg
+
+-Continual Success: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4
+-Perturb Highlights: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4
+-Randomize: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_randomize.mp4
+-Highlights: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_highlights.mp4
+-Failures: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_failures.mp4
+-Full:https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/full/3_16_leg_eval_full.mp4
+-Full Perturb: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/full/3_16_leg_eval_perturb_full.mp4
+
+Peg
+
+-Continual Success: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_continual_success.mp4
+-Perturb Highlights: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_perturb_highlights.mp4
+-Randomize: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4
+-Highlights: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_highlights.mp4
+-Failures: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_failures.mp4
+-Full: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/full/3_16_peg_eval_full.mp4
+-Full Perturb: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/full/3_16_peg_eval_perturb_full.mp4
+
+Drawer
+
+-Continual Success: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_continual_success.mp4
+-Perturb Highlights: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_perturb_highlights.mp4
+-Randomize: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_randomize.mp4
+-Highlights: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_highlights.mp4
+-Failures: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_failures.mp4
+-Full: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/full/3_16_drawer_eval_full.mp4
+-Full Perturb: https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/full/3_16_drawer_eval_perturb_full.mp4

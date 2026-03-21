@@ -18,6 +18,3 @@ reconstruction_input_videos/
 
 # OS
 .DS_Store
-
-.vscode
-interactive_assets/

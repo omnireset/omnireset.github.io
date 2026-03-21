@@ -8,6 +8,18 @@
   <link rel="icon" href="./figs/logo.png" type="image/png">
   <link rel="stylesheet" href="style.css?v=2">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://esm.sh/three@r170",
+        "three/addons/loaders/HDRLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/HDRLoader.js",
+        "three/addons/loaders/GLTFLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/GLTFLoader.js",
+        "three/addons/controls/OrbitControls.js": "https://esm.sh/three@r170/examples/jsm/controls/OrbitControls.js",
+        "protobufjs": "https://esm.sh/protobufjs@7.4.0"
+      }
+    }
+  </script>
   <script>
     window.MathJax = {
       tex: {
@@ -19,7 +31,6 @@
 </head>
 
 <body>
-  <div class="wip-banner" role="alert">This website is still a work in progress.</div>
   <!-- Progress Sidebar -->
   <nav class="progress-sidebar" aria-label="Page progress">
     <div class="progress-track">
@@ -141,31 +152,31 @@
         <div class="real-world-grid-row">
           <div class="real-world-grid-cell">
             <h4 class="real-world-video-title">Table Assembly</h4>
-            <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
           <div class="real-world-grid-cell">
             <h4 class="real-world-video-title">Table Assembly</h4>
-            <video src="./vids/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
         </div>
         <div class="real-world-grid-row">
           <div class="real-world-grid-cell">
             <h4 class="real-world-video-title">Peg Insertion</h4>
-            <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
           <div class="real-world-grid-cell">
             <h4 class="real-world-video-title">Peg Insertion</h4>
-            <video src="./vids/peg/3_16_peg_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
         </div>
         <div class="real-world-grid-row">
           <div class="real-world-grid-cell">
             <h4 class="real-world-video-title">Drawer Assembly</h4>
-            <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
           <div class="real-world-grid-cell">
             <h4 class="real-world-video-title">Drawer Assembly</h4>
-            <video src="./vids/drawer/3_16_drawer_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_continual_success.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
         </div>
       </div>
@@ -177,19 +188,19 @@
         <div class="real-world-column">
           <h4 class="real-world-column-title">Peg Insertion</h4>
           <div class="real-world-column-video">
-            <video src="./vids/peg/3_16_peg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
           <div class="real-world-column-video">
-            <video src="./vids/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
         </div>
         <div class="real-world-column">
           <h4 class="real-world-column-title">Table Assembly</h4>
           <div class="real-world-column-video">
-            <video src="./vids/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
           <div class="real-world-column-video">
-            <video src="./vids/leg/3_16_leg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
         </div>
       </div>
@@ -253,32 +264,32 @@
       </div> 
     </div> -->
 
-    <!-- <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
+    <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
     <div class="pipeline-grid card-surface">
       <div class="pipeline-card">
         <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4" autoplay muted loop playsinline
           preload="metadata"></video>
         <p>Automatically generate diverse resets covering contact-rich robot-object interaction modes.</p>
       </div>
       <div class="pipeline-card">
         <div class="pipeline-step">Step 2 — Large-Scale State-Based RL Training</div>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/RL+Training/Screencast+from+03-20-2026+05_54_52+PM.mp4" autoplay muted loop playsinline
           preload="metadata"></video>
         <p>Reset from diverse states, scale parallel environments and PPO batch size, overcome exploration bottlenecks, and obtain robust long-horizon manipulation policies.</p>
       </div>
       <div class="pipeline-card">
         <div class="pipeline-step">Step 3 — Distill to Perception</div>
-        <video src="./vids/Distillation_video.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_distillation_videos/policy_cameras_leg.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p>Student-Teacher Distillation to raw RGB image observations with extensive visual randomization.</p>
       </div>
       <div class="pipeline-card">
         <div class="pipeline-step">Step 4 — Deploy</div>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline
           preload="metadata"></video>
         <p>Robust zeroshot transfer of precise manipulation policies which just work from wide ranges of initial conditions.</p>
       </div>
-    </div> -->
+    </div>
 
     <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
     <div class="card-surface">
@@ -289,51 +300,40 @@
     <div class="expert-policies-grid card-surface">
       <div class="expert-policy-card">
         <h4 class="expert-policy-title">Drawer Insertion</h4>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p class="expert-policy-caption">Insert the drawer into the dresser.</p>
       </div>
       <div class="expert-policy-card">
         <h4 class="expert-policy-title">Leg Twisting</h4>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p class="expert-policy-caption">Screw the leg into the table.</p>
       </div>
       <div class="expert-policy-card">
         <h4 class="expert-policy-title">Peg Insertion</h4>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p class="expert-policy-caption">Insert the peg in the hole.</p>
       </div>
       <div class="expert-policy-card">
         <h4 class="expert-policy-title">Wall Slide</h4>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/rectangle_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p class="expert-policy-caption">Slide the block to the desired position on the wall.</p>
       </div>
       <div class="expert-policy-card">
         <h4 class="expert-policy-title">Cube Stacking</h4>
-        <video src="./vids/ObjectAnywhereEEAnywhere_h264.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cube_stacking_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p class="expert-policy-caption">Stack the cubes on top of each other.</p>
       </div>
       <div class="expert-policy-card">
         <h4 class="expert-policy-title">Birthday Party</h4>
-        <video src="./vids/Distillation_video.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cupcake_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
         <p class="expert-policy-caption">Put the cupcake on the plate.</p>
       </div>
-    </div> -->
+    </div>
 
     <div class="card-surface reconstruction-split-section">
       <div class="section-heading">Interactive Demo</div>
 
-      <script type="importmap">
-        {
-            "imports": {
-                "three": "https://esm.sh/three@r170",
-                "three/addons/loaders/HDRLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/HDRLoader.js",
-                "three/addons/loaders/GLTFLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/GLTFLoader.js",
-                "three/addons/controls/OrbitControls.js": "https://esm.sh/three@r170/examples/jsm/controls/OrbitControls.js",
-                "protobufjs": "https://esm.sh/protobufjs@7.4.0"
-            }
-        }
-        </script>
-        <script type="module" src="main.js"></script>
+      <script type="module" src="main.js"></script>
 
       <div class="demo-tab-bar">
         <button class="demo-tab active" data-task="peg">Peg</button>
