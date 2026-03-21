@@ -15,6 +15,7 @@ Rectangle on wall: https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_
 Reset Distributions:
 
 Reaching: https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4
+Reaching (object fixed): https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_fixed.mp4
 Near object: https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4
 Near object (object fixed): https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_fixed.mp4
 Grasped: https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4

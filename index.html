@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OmniReset</title>
   <link rel="icon" href="./figs/logo.png" type="image/png">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=15">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
   <script type="importmap">
@@ -70,6 +70,12 @@
         <a href="#results">
           <span class="progress-dot"></span>
           <span class="progress-label">Results</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="uncut-evaluations">
+        <a href="#uncut-evaluations">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Uncut Evaluations</span>
         </a>
       </div>
       <!-- Commented out - gallery section hidden
@@ -231,107 +237,153 @@
       <p class="figure-caption slider-caption"><b>PolaRiS</b> enables zero-shot evaluation in unseen simulation environments that correlates strongly with real-world performance.</p>
     </section> -->
 
-    <!-- <div class="tagline" id="abstract">Abstract / TL;DR</div>
-    <div class="section card-surface abstract-card" tabindex="0" aria-label="Hover or focus to read full abstract">
-      <div class="abstract-teaser">
-        <p>We introduce PolaRiS, a scalable real-to-sim framework for high-fidelity robot evaluation. PolaRiS turns short scans into interactive environments via 2D Gaussian Splatting, co-trains on a small number of sim episodes to bridge the visual gap, and provides accurate policy ranking without additional real rollouts.</p>
-        <p>Through paired sim/real evaluations, PolaRiS delivers substantially stronger real-world correlation for generalist policies.</p>
-      </div>
-      <div class="abstract-full" aria-hidden="true">
-        <p>A major challenge for robot learning research is our ability to accurately measure and compare the performance of robot policies. Benchmarking in robotics is historically challenging due to the stochasticity, reproducibility, and time-consuming nature of real-world rollouts. This challenge is exacerbated for recent generalist policies, which need to be evaluated across numerous scenes and tasks. Evaluation in simulation offers a scalable complement to real world evaluations, but the visual and physical domain gap between existing simulation benchmarks and the real world has made them an unreliable signal for policy improvement. Furthermore, building realistic and diverse simulated environments has traditionally required significant human effort and expertise.</p>
-        <p></p>To bridge the gap, we introduce <b>Policy Evaluation and Environment Reconstruction in Simulation (PolaRiS)</b>, a scalable real-to-sim framework for high-fidelity simulated robot evaluation. PolaRiS uses neural reconstruction methods to turn short video scans of real-world scenes into interactive simulation environments. Further, we develop a simple simulation data co-training recipe that bridges remaining real-to-sim gaps and enables zero-shot evaluation in unseen simulation environments. Through extensive paired evaluations between simulation and the real world, we demonstrate that PolaRiS evaluations provide a much stronger correlation to real world generalist policy performance than existing simulated benchmarks. Its simplicity also enables rapid creation of diverse simulated environments.</p>
-        <p>As such, this work takes a step towards distributed and democratized evaluation for the next generation of robotic foundation models.</p>
-      </div>
-      <div class="abstract-hint">Hover or focus to reveal full abstract</div>
-      <div class="tldr-grid">
-        <div class="tldr-card" tabindex="0">
-          <div class="tldr-label">Scan</div>
-          <p>Turn short video scans into interactive environments using 2D Gaussian Splatting.</p>
-          <video class="tldr-video" src="./assets/videos/blender.mp4" autoplay muted loop playsinline></video>
-        </div>
-        <div class="tldr-card" tabindex="0">
-          <div class="tldr-label">Align</div>
-          <p>Bridge the visual gap with a light co-training recipe on a few hundred simulated episodes.</p>
-          place holder, idk what to put here yet
-          <video class="tldr-video" src="./train_in_sim/vid2_rl.mp4" autoplay muted loop playsinline></video>
-        </div>
-        <div class="tldr-card" tabindex="0">
-          <div class="tldr-label">Evaluate</div>
-          <p>Rank policies accurately in sim—no additional real-world rollouts required.</p>
-          <video class="tldr-video" src="./fig/rankin." autoplay muted loop playsinline></video>
-          <img src="./figs/ranking.png" alt="Policy ranking" class="tldr-image" />
-        </div>
-      </div> 
-    </div> -->
-
     <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
-    <div class="pipeline-grid card-surface">
-      <div class="pipeline-card">
-        <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4" autoplay muted loop playsinline
-          preload="metadata"></video>
-        <p>Automatically generate diverse resets covering contact-rich robot-object interaction modes.</p>
-      </div>
-      <div class="pipeline-card">
-        <div class="pipeline-step">Step 2 — Large-Scale State-Based RL Training</div>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/RL+Training/Screencast+from+03-20-2026+05_54_52+PM.mp4" autoplay muted loop playsinline
-          preload="metadata"></video>
-        <p>Reset from diverse states, scale parallel environments and PPO batch size, overcome exploration bottlenecks, and obtain robust long-horizon manipulation policies.</p>
-      </div>
-      <div class="pipeline-card">
-        <div class="pipeline-step">Step 3 — Distill to Perception</div>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_distillation_videos/policy_cameras_leg.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        <p>Student-Teacher Distillation to raw RGB image observations with extensive visual randomization.</p>
-      </div>
-      <div class="pipeline-card">
-        <div class="pipeline-step">Step 4 — Deploy</div>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline
-          preload="metadata"></video>
-        <p>Robust zeroshot transfer of precise manipulation policies which just work from wide ranges of initial conditions.</p>
+    <div class="card-surface pipeline-section-box">
+      <p class="real-world-common-caption real-world-caption-top">The key idea behind OmniReset is to expose RL algorithms to broad coverage over a superset of the contact-rich interactions the robot might encounter when solving the task. This overcomes the exploration bottleneck that hampers existing RL approaches for manipulation and opens the door to scaling through larger simulation and more compute. We train state-based expert policies with 64k+ environments, distill the resulting policies to perception with student-teacher distillation, then deploy the resulting policies to the real world zero-shot.</p>
+      <div class="pipeline-grid">
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4" autoplay muted loop playsinline
+            preload="metadata"></video>
+          <p>Automatically generate diverse resets covering contact-rich robot-object interaction modes.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 2 — Large-Scale State-Based RL Training</div>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/RL+Training/Screencast+from+03-20-2026+05_54_52+PM.mp4" autoplay muted loop playsinline
+            preload="metadata"></video>
+          <p>Reset from diverse states, scale parallel environments and PPO batch size, overcome exploration bottlenecks, and obtain robust long-horizon manipulation policies.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 3 — Distill to Perception</div>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_distillation_videos/policy_cameras_leg.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <p>Student-Teacher Distillation to raw RGB image observations with extensive visual randomization.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 4 — Deploy</div>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline
+            preload="metadata"></video>
+          <p>Robust zeroshot transfer of precise manipulation policies which just work from wide ranges of initial conditions.</p>
+        </div>
       </div>
     </div>
 
     <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
-    <div class="card-surface">
-      <!-- Content goes here -->
+    <div class="reset-distribution-stack">
+      <div class="card-surface reset-distribution-block">
+        <p class="real-world-common-caption real-world-caption-top">Here we zoom in on the table leg to give a sense for the diverse, contact-rich interactions the robot is exposed to during training.</p>
+        <div class="reset-distribution-grid reset-distribution-grid--three-cols">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Initiating Contact</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-surface reset-distribution-block">
+        <p class="real-world-common-caption real-world-caption-top">OmniReset automatically generates diverse resets with coverage over both object configuration in the scene and the different ways the robot can interact with the object. By giving the RL algorithm access to as many potential behaviors as possible, we enable complex, contact-rich task-specific behaviors to arise directly from large-scale optimization and compute, without requiring human effort to specify which behaviors are needed for the specific task.</p>
+        <p class="real-world-common-caption reset-distribution-intro-follow">Concretely, we generate resets covering the following regions of the state space, which together provide dense coverage over the potential paths the robot will traverse when approaching the object, initiating contact, transporting the object to the goal, and near goal states where rich behaviors such as screwing or insertion occur. See <a href="https://arxiv.org/abs/2603.15789" target="_blank" rel="noopener noreferrer">the paper</a> for more details on how we generate these distributions.</p>
+        <div class="reset-distribution-grid">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+            <p class="reset-distribution-caption">Contact-rich near-goal states</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+            <p class="reset-distribution-caption">Stable grasp configurations</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Initiating Contact</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+            <p class="reset-distribution-caption">The robot initiating contact with the object, covering contact-rich non-prehensile behaviors</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Reaching</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+            <p class="reset-distribution-caption">Reaching motions where the robot approaches the target object</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="tagline" id="expert-policies">OmniReset Expert Policies</div>
-    <div class="expert-policies-grid card-surface">
-      <div class="expert-policy-card">
-        <h4 class="expert-policy-title">Drawer Insertion</h4>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        <p class="expert-policy-caption">Insert the drawer into the dresser.</p>
-      </div>
-      <div class="expert-policy-card">
-        <h4 class="expert-policy-title">Leg Twisting</h4>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        <p class="expert-policy-caption">Screw the leg into the table.</p>
-      </div>
-      <div class="expert-policy-card">
-        <h4 class="expert-policy-title">Peg Insertion</h4>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        <p class="expert-policy-caption">Insert the peg in the hole.</p>
-      </div>
-      <div class="expert-policy-card">
-        <h4 class="expert-policy-title">Wall Slide</h4>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/rectangle_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        <p class="expert-policy-caption">Slide the block to the desired position on the wall.</p>
-      </div>
-      <div class="expert-policy-card">
-        <h4 class="expert-policy-title">Cube Stacking</h4>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cube_stacking_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        <p class="expert-policy-caption">Stack the cubes on top of each other.</p>
-      </div>
-      <div class="expert-policy-card">
-        <h4 class="expert-policy-title">Birthday Party</h4>
-        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cupcake_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
-        <p class="expert-policy-caption">Put the cupcake on the plate.</p>
+    <div class="card-surface expert-policies-section-box">
+      <h3 class="expert-policies-intro-title">Here's the full suite of expert policies we've trained.</h3>
+      <div class="expert-policies-grid">
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Drawer Insertion</h4>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <p class="expert-policy-caption">Insert the drawer into the dresser.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Leg Twisting</h4>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <p class="expert-policy-caption">Screw the leg into the table.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Peg Insertion</h4>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <p class="expert-policy-caption">Insert the peg in the hole.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Wall Slide</h4>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/rectangle_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <p class="expert-policy-caption">Slide the block to the desired position on the wall.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Cube Stacking</h4>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cube_stacking_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <p class="expert-policy-caption">Stack the cubes on top of each other.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Birthday Party</h4>
+          <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cupcake_cut.mp4" autoplay muted loop playsinline preload="metadata"></video>
+          <p class="expert-policy-caption">Put the cupcake on the plate.</p>
+        </div>
       </div>
     </div>
 
     <div class="card-surface reconstruction-split-section">
-      <div class="section-heading">Interactive Demo</div>
+      <div class="interactive-demo-header">
+        <div class="section-heading">Interactive Demo</div>
+        <p class="interactive-demo-lead">Here you can play with the OmniReset policies yourself to see just how robust they are. These are the actual policies running in IsaacSim on a server! Press &lsquo;Play trajectory&rsquo; to start a new rollout, and &lsquo;Disturb&rsquo; to inject a failure the policy will attempt to recover from.</p>
+      </div>
 
       <script type="module" src="main.js"></script>
 
@@ -353,13 +405,35 @@
     <div class="tagline" id="results">Results</div>
     <div class="card-surface scatter-card reset-distributions-plots">
       <div class="reset-plot-item">
-        <img src="./vids/Plots/Baselines_scatter_plot.png" alt="Baselines scatter plot" class="reset-plot-img" />
+        <p class="reset-plot-intro">We compare OmniReset to state-of-the-art RL frameworks, on both easy and hard versions of each of the tasks. The easy versions of the tasks have restricted ranges of initial conditions, while the hard versions cover the entire workspace that our OmniReset policies are trained on. Across the board, baselines struggled to achieve meaningful success rates on the Hard version of tasks. This is highlighted by the scatter plot below, where we plot successful initial conditions for OmniReset and the strongest baseline Demo Curriculum. Specifically, on the left we show Demo Curriculum trained on the hard distribution of initial conditions, in the middle we see Demo Curriculum trained on the easy range of initial conditions, and on the right we see OmniReset trained on the hard range of initial conditions.</p>
+        <img src="https://f004.backblazeb2.com/file/omnireset-website/Plots/Baselines_scatter_plot.png" alt="Baselines scatter plot" class="reset-plot-img" />
       </div>
       <div class="reset-plot-item">
-        <img src="./vids/Plots/baselines_3x3_grid-1.png" alt="Baselines 3x3 grid" class="reset-plot-img" />
+        <p class="reset-plot-intro">Here we plot learning curves for different methods across different variations of the task. OmniReset consistently achieves high success rates where baselines struggle to make progress in learning.</p>
+        <img src="https://omnireset-website.s3.us-west-004.backblazeb2.com/Plots/baselines_3x3_grid-1.png" alt="Baselines 3x3 grid" class="reset-plot-img" />
       </div>
-      <div class="reset-plot-item">
-        <img src="./vids/Plots/leg_NG_reaching-1.png" alt="Leg NG reaching" class="reset-plot-img" />
+    </div>
+
+    <div class="tagline" id="uncut-evaluations">Uncut Evaluations</div>
+    <div class="card-surface uncut-evaluations-box">
+      <p class="uncut-evaluations-subtitle">Here's full, uncut, continuous evaluations for OmniReset, giving a sense for both the robustness of our policies and their failure modes.</p>
+      <div class="uncut-evaluations-grid">
+        <div class="uncut-evaluations-cell">
+          <h4 class="uncut-evaluations-title">Table assembly</h4>
+          <div class="uncut-evaluations-video-wrap">
+            <video
+              src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/full/3_16_leg_eval_full.mp4"
+              controls playsinline preload="metadata"></video>
+          </div>
+        </div>
+        <div class="uncut-evaluations-cell">
+          <h4 class="uncut-evaluations-title">Peg insertion</h4>
+          <div class="uncut-evaluations-video-wrap">
+            <video
+              src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/full/3_16_peg_eval_full.mp4"
+              controls playsinline preload="metadata"></video>
+          </div>
+        </div>
       </div>
     </div>
 
