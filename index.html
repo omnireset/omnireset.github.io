@@ -270,35 +270,6 @@
     <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
     <div class="reset-distribution-stack">
       <div class="card-surface reset-distribution-block">
-        <p class="real-world-common-caption real-world-caption-top">Here we zoom in on the table leg to give a sense for the diverse, contact-rich interactions the robot is exposed to during training.</p>
-        <div class="reset-distribution-grid reset-distribution-grid--three-cols">
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Goal</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
-                autoplay muted loop playsinline preload="metadata"></video>
-            </div>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Grasped</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
-                autoplay muted loop playsinline preload="metadata"></video>
-            </div>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Initiating Contact</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_fixed.mp4"
-                autoplay muted loop playsinline preload="metadata"></video>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card-surface reset-distribution-block">
         <p class="real-world-common-caption real-world-caption-top">OmniReset automatically generates diverse resets with coverage over both object configuration in the scene and the different ways the robot can interact with the object. By giving the RL algorithm access to as many potential behaviors as possible, we enable complex, contact-rich task-specific behaviors to arise directly from large-scale optimization and compute, without requiring human effort to specify which behaviors are needed for the specific task.</p>
         <p class="real-world-common-caption reset-distribution-intro-follow">Concretely, we generate resets covering the following regions of the state space, which together provide dense coverage over the potential paths the robot will traverse when approaching the object, initiating contact, transporting the object to the goal, and near goal states where rich behaviors such as screwing or insertion occur. See <a href="https://arxiv.org/abs/2603.15789" target="_blank" rel="noopener noreferrer">the paper</a> for more details on how we generate these distributions.</p>
         <div class="reset-distribution-grid">
@@ -337,6 +308,35 @@
                 autoplay muted loop playsinline preload="metadata"></video>
             </div>
             <p class="reset-distribution-caption">Reaching motions where the robot approaches the target object</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-surface reset-distribution-block">
+        <p class="real-world-common-caption real-world-caption-top">Here we zoom in on the table leg to give a sense for the diverse, contact-rich interactions the robot is exposed to during training.</p>
+        <div class="reset-distribution-grid reset-distribution-grid--three-cols">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Initiating Contact</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline preload="metadata"></video>
+            </div>
           </div>
         </div>
       </div>
