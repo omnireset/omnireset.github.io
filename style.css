@@ -152,11 +152,38 @@ h1, h2, h3, h4, h5, h6, .section-heading {
   font-weight: 500;
   color: var(--text-muted);
   white-space: nowrap;
-  opacity: 1;
   transform: translateX(0);
-  transition: color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.22s ease,
+    max-width 0.32s ease;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  opacity: 1;
+  max-width: 320px;
+}
+
+/* Collapse labels until sidebar hover/focus; touch devices keep labels visible */
+@media (hover: hover) {
+  .progress-label {
+    opacity: 0;
+    max-width: 0;
+    overflow: hidden;
+  }
+
+  /* Current section stays readable when rail is collapsed */
+  .progress-item.active .progress-label {
+    opacity: 1;
+    max-width: 320px;
+    overflow: visible;
+  }
+
+  .progress-sidebar:hover .progress-label,
+  .progress-sidebar:focus-within .progress-label {
+    opacity: 1;
+    max-width: 320px;
+    overflow: visible;
+  }
 }
 
 .progress-item.active .progress-label {
