@@ -1179,6 +1179,37 @@ details[open] > .code-summary::before {
   border-radius: 8px;
 }
 
+/* Visualizing learning over time (progress video) */
+.learning-over-time-box {
+  margin: 0 0 32px 0;
+}
+
+.learning-over-time-intro {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+  text-align: left;
+  margin: 0 auto 28px auto;
+  max-width: 900px;
+}
+
+.learning-over-time-video-wrap {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-sm);
+}
+
+.learning-over-time-video-wrap video {
+  width: 100%;
+  max-height: min(75vh, 800px);
+  height: auto;
+  display: block;
+}
+
 /* Uncut evaluations (full-length real eval videos) */
 .uncut-evaluations-box {
   margin: 0 0 32px 0;

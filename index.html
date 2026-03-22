@@ -15,7 +15,7 @@
     gtag('config', 'G-2VH1BKBSE5');
   </script>
   <link rel="icon" href="./figs/favicon.png" type="image/png" sizes="48x48">
-  <link rel="stylesheet" href="style.css?v=26">
+  <link rel="stylesheet" href="style.css?v=27">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
   <script type="importmap">
@@ -73,6 +73,12 @@
         <a href="#reset-distributions">
           <span class="progress-dot"></span>
           <span class="progress-label">Reset Distributions</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="learning-over-time">
+        <a href="#learning-over-time">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Learning Over Time</span>
         </a>
       </div>
       <div class="progress-item" data-section="results">
@@ -658,11 +664,21 @@ class ObjectAnywhereEEAnywhereEventCfg(ResetStatesBaseEventCfg):
       </div>
     </div>
 
+    <div class="tagline" id="learning-over-time">Visualizing Learning Over Time</div>
+    <div class="card-surface learning-over-time-box">
+      <p class="learning-over-time-intro">Unlike many state-of-the-art approaches, OmniReset does not rely on curricula to stabilize and accelerate learning. Here we visualize how learning for OmniReset progresses over time. We observe that the diverse resets OmniReset provides enable PPO to naturally solve the problem backwards, first learning to succeed from near-goal states and eventually learning to succeed from the entire search space. This behavior is entirely emergent from our diverse resets and large-scale compute and optimization.</p>
+      <div class="learning-over-time-video-wrap">
+        <video
+          src="https://omnireset-website.s3.us-west-004.backblazeb2.com/progress/Progression+simple.mp4"
+          controls playsinline preload="metadata"></video>
+      </div>
+    </div>
+
     <div class="tagline" id="results">Simulation Results</div>
     <div class="card-surface scatter-card reset-distributions-plots">
       <div class="reset-plot-item">
-        <p class="reset-plot-intro">We compare OmniReset to strong RL baselines on <b>easy</b> (restricted initial conditions) and <b>hard</b> (full workspace) variants of each task. Baselines rarely succeed on hard settings. The scatter plot shows successful initial conditions for Demo Curriculum trained on the easy variant (left), Demo Curriculum on the hard variant (center), and OmniReset on the hard variant (right).</p>
-        <img src="https://f004.backblazeb2.com/file/omnireset-website/Plots/Baselines_scatter_plot.png" alt="Baselines scatter plot" class="reset-plot-img" />
+        <p class="reset-plot-intro">We compare OmniReset to strong RL baselines on easy (restricted initial conditions) and hard (full workspace) variants of each task. Baselines rarely succeed on hard settings. The scatter plot shows successful initial conditions for OmniReset (left) and the strongest baseline Demo Curriculum (right) trained on the hard version of the table assembly task.</p>
+        <img src="https://f004.backblazeb2.com/file/omnireset-website/Plots/baseline_scatter_new.png" alt="Baselines scatter plot" class="reset-plot-img" />
       </div>
       <div class="reset-plot-item">
         <p class="reset-plot-intro">Here we plot learning curves for different methods across different variations of the task. OmniReset consistently achieves high success rates where baselines struggle to make progress in learning.</p>
