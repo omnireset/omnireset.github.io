@@ -15,7 +15,7 @@
     gtag('config', 'G-2VH1BKBSE5');
   </script>
   <link rel="icon" href="./figs/favicon.png" type="image/png" sizes="48x48">
-  <link rel="stylesheet" href="style.css?v=27">
+  <link rel="stylesheet" href="style.css?v=29">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
   <script type="importmap">
@@ -54,13 +54,25 @@
       <div class="progress-item" data-section="real-world-results">
         <a href="#real-world-results">
           <span class="progress-dot"></span>
-          <span class="progress-label">Real World Results</span>
+          <span class="progress-label">Sim2Real Results</span>
         </a>
       </div>
       <div class="progress-item" data-section="expert-policies">
         <a href="#expert-policies">
           <span class="progress-dot"></span>
           <span class="progress-label">Expert Policies</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="interactive-demo">
+        <a href="#interactive-demo">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Interactive Sim</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="real-world-robustness">
+        <a href="#real-world-robustness">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Real World Robustness</span>
         </a>
       </div>
       <div class="progress-item" data-section="pipeline">
@@ -239,57 +251,6 @@
       <p class="real-world-common-caption real-world-caption-bottom">OmniReset policies solve tasks from a <b>wide range of initial conditions</b>.</p>
     </div>
 
-    <div class="card-surface real-world-results-box real-world-robustness-box">
-      <h4 class="real-world-robustness-title">Policy Robustness</h4>
-      <div class="robustness-header-row">
-        <div class="real-world-grid-header">Perturbations</div>
-        <div class="real-world-grid-header">Randomized Target Positions</div>
-      </div>
-      <div class="robustness-group">
-        <p class="robustness-row-label">Peg Insertion</p>
-        <div class="robustness-video-row">
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="robustness-group">
-        <p class="robustness-row-label">Table Assembly</p>
-        <div class="robustness-video-row">
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="real-world-common-caption">Policies recover from perturbations, retry after mistakes, and succeed under randomized target positions.</p>
-    </div>
-
     <!-- <div class="tagline">Real vs. Sim</div>
     <section class="slider-section card-surface" id="slider-comparison">
       <div class="section-heading">Interactive Slider Comparison</div>
@@ -391,7 +352,7 @@
       </div>
     </div>
 
-    <div class="card-surface reconstruction-split-section">
+    <div class="card-surface reconstruction-split-section" id="interactive-demo">
       <div class="interactive-demo-header">
         <div class="section-heading">Play with the OmniReset policies yourself!</div>
         <p class="real-world-common-caption">Press <strong>&lsquo;Play&rsquo;</strong> to start a new rollout, and <strong>&lsquo;Disturb&rsquo;</strong> to inject a disturbance the policy will attempt to recover from.<br>
@@ -418,6 +379,57 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <div class="card-surface real-world-results-box real-world-robustness-box" id="real-world-robustness">
+      <h4 class="real-world-robustness-title">Policy Robustness</h4>
+      <div class="robustness-header-row">
+        <div class="real-world-grid-header">Perturbations</div>
+        <div class="real-world-grid-header">Randomized Target Positions</div>
+      </div>
+      <div class="robustness-group">
+        <p class="robustness-row-label">Peg Insertion</p>
+        <div class="robustness-video-row">
+          <div class="real-world-column-video">
+            <div class="real-world-video-frame">
+              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="real-world-column-video">
+            <div class="real-world-video-frame">
+              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="robustness-group">
+        <p class="robustness-row-label">Table Assembly</p>
+        <div class="robustness-video-row">
+          <div class="real-world-column-video">
+            <div class="real-world-video-frame">
+              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="real-world-column-video">
+            <div class="real-world-video-frame">
+              <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="real-world-common-caption">Policies recover from perturbations, retry after mistakes, and succeed under randomized target positions.</p>
     </div>
 
     <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
