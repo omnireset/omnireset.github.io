@@ -322,13 +322,15 @@ scene.backgroundRotation.y = -Math.PI / 2;
 
 /**
  * Camera and orbit controls: scroll to zoom, left-drag to orbit around origin.
+ * Shared initial pose for peg / leg / drawer.
  */
-camera.position.set(1.5, 0.5, 0);
+camera.position.set(1.009, 0.278, -0.559);
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.copy(sceneRoot.position);
+controls.target.set(0, 0, 0);
 controls.enablePan = false;
 controls.minDistance = 0.3;
 controls.maxDistance = 15;
+controls.update();
 
 /**
  * Construct the arm hierarchy
