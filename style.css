@@ -1393,13 +1393,17 @@ details[open] > .code-summary::before {
   margin: 0 0 16px 0;
 }
 
-.expert-policy-card video {
+.expert-policy-card .real-world-video-frame {
+  margin-bottom: 16px;
+}
+
+.expert-policy-card .real-world-video-frame video {
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 16px;
   display: block;
-  margin: 0 0 16px 0;
+  margin: 0;
   box-shadow: var(--shadow-sm);
 }
 
