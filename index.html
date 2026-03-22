@@ -54,7 +54,13 @@
       <div class="progress-item" data-section="real-world-results">
         <a href="#real-world-results">
           <span class="progress-dot"></span>
-          <span class="progress-label">Real World RL</span>
+          <span class="progress-label">Real World Results</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="expert-policies">
+        <a href="#expert-policies">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Expert Policies</span>
         </a>
       </div>
       <div class="progress-item" data-section="pipeline">
@@ -69,22 +75,16 @@
           <span class="progress-label">Reset Distributions</span>
         </a>
       </div>
-      <div class="progress-item" data-section="expert-policies">
-        <a href="#expert-policies">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Expert Policies</span>
-        </a>
-      </div>
       <div class="progress-item" data-section="results">
         <a href="#results">
           <span class="progress-dot"></span>
-          <span class="progress-label">Results</span>
+          <span class="progress-label">Simulation Results</span>
         </a>
       </div>
       <div class="progress-item" data-section="evaluations">
         <a href="#evaluations">
           <span class="progress-dot"></span>
-          <span class="progress-label">Evaluations</span>
+          <span class="progress-label">Real-World Evaluations</span>
         </a>
       </div>
       <!-- Commented out - gallery section hidden
@@ -159,7 +159,7 @@
     </div>
 
     <div class="card-surface real-world-results-box" id="real-world-results">
-      <p class="real-world-common-caption real-world-caption-top">OmniReset is sim2real framework which uses <b>large-scale RL</b> and <b>resets</b> to solve contact-rich, dexterous manipulation with <b>no reward engineering or demos</b>. We distill policies to <b>RGB</b> (three cameras inputs below) and evaluate <b>zero-shot</b> in the real world.</p>
+      <p class="real-world-common-caption real-world-caption-top">OmniReset is data generation framework which uses <b>large-scale RL</b> and <b>resets</b> in simulation to solve contact-rich, dexterous manipulation with <b>no reward engineering or demos</b>. We distill OmniReset policies to <b>RGB</b> (three cameras inputs below) and show <b>zero-shot sim2real transfer.</b></p>
       <div class="real-world-sim-real-grid">
         <div class="robustness-header-row">
           <div class="real-world-grid-header sim-col">Simulation</div>
@@ -206,25 +206,25 @@
     <div class="card-surface real-world-results-box real-world-robustness-box">
       <h4 class="real-world-robustness-title">Policy Robustness</h4>
       <div class="robustness-header-row">
-        <h4 class="real-world-column-title">Peg Insertion</h4>
-        <h4 class="real-world-column-title">Table Assembly</h4>
+        <div class="real-world-grid-header">Perturbations</div>
+        <div class="real-world-grid-header">Randomized Target Positions</div>
       </div>
       <div class="robustness-group">
-        <p class="robustness-row-label">Perturbations</p>
+        <p class="robustness-row-label">Peg Insertion</p>
         <div class="robustness-video-row">
           <div class="real-world-column-video">
             <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
           <div class="real-world-column-video">
-            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
         </div>
       </div>
       <div class="robustness-group">
-        <p class="robustness-row-label">Randomized Target Positions</p>
+        <p class="robustness-row-label">Table Assembly</p>
         <div class="robustness-video-row">
           <div class="real-world-column-video">
-            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
+            <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline preload="metadata"></video>
           </div>
           <div class="real-world-column-video">
             <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_randomize.mp4" autoplay muted loop playsinline preload="metadata"></video>
@@ -330,7 +330,7 @@
 
     <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
     <div class="card-surface pipeline-section-box">
-      <p class="real-world-common-caption real-world-caption-top">OmniReset kills the exploration problem for RL by exposing it a broad coverage of <b>reset states</b> that the robot may encounter when solving the task. We train state-based expert policies with <b>PPO on 64K+ environments</b>, <b>distill to RGB</b> with student-teacher distillation, then deploy the resulting policies to the real world <b>zero-shot</b>.</p>
+      <p class="real-world-common-caption real-world-caption-top">OmniReset addresses the exploration problem for RL by exposing it a broad coverage of <b>reset states</b> that the robot may encounter when solving the task. We train state-based expert policies with <b>PPO on 64K+ environments</b>, <b>distill to RGB</b> with student-teacher distillation, then deploy the resulting policies to the real world <b>zero-shot</b>.</p>
       <div class="pipeline-grid">
         <div class="pipeline-card">
           <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
@@ -703,6 +703,47 @@ class ObjectAnywhereEEAnywhereEventCfg(ResetStatesBaseEventCfg):
   </div>
 
   <script>
+    // Lazy video loading: defer src until near viewport, pause when offscreen, unload when far away
+    document.addEventListener('DOMContentLoaded', () => {
+      const vids = document.querySelectorAll('video[autoplay]');
+      vids.forEach(v => {
+        v.removeAttribute('autoplay');
+        v.dataset.src = v.getAttribute('src');
+        v.removeAttribute('src');
+        v.preload = 'none';
+      });
+
+      // Tier 1: play/pause when within 50% of viewport
+      const playObserver = new IntersectionObserver((entries) => {
+        entries.forEach(({ target: v, isIntersecting }) => {
+          if (isIntersecting) {
+            if (!v.getAttribute('src') && v.dataset.src) {
+              v.src = v.dataset.src;
+            }
+            v.play().catch(() => {});
+          } else {
+            v.pause();
+          }
+        });
+      }, { rootMargin: '50% 0px' });
+
+      // Tier 2: fully unload when > 150% of viewport away to free decoded frames
+      const unloadObserver = new IntersectionObserver((entries) => {
+        entries.forEach(({ target: v, isIntersecting }) => {
+          if (!isIntersecting && v.getAttribute('src')) {
+            v.pause();
+            v.removeAttribute('src');
+            v.load();
+          }
+        });
+      }, { rootMargin: '150% 0px' });
+
+      vids.forEach(v => {
+        playObserver.observe(v);
+        unloadObserver.observe(v);
+      });
+    });
+
     // Evaluation tabs (Highlights / Failures / Uncut)
     document.addEventListener('DOMContentLoaded', () => {
       const tabs = document.querySelectorAll('.eval-tab');
