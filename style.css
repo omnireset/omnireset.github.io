@@ -2450,6 +2450,11 @@ details[open] > .code-summary::before {
   margin-bottom: 16px;
 }
 
+.interactive-demo-header .interactive-demo-camera-hint {
+  display: block;
+  margin-top: 10px;
+}
+
 .interactive-demo-lead {
   color: var(--text-secondary);
   font-size: 14px;
