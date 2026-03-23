@@ -894,6 +894,24 @@ details[open] > .code-summary::before {
   display: block;
 }
 
+/* Video poster shimmer while loading */
+video[poster] {
+  background-color: var(--bg-elevated);
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+}
+
+@keyframes posterShimmer {
+  0% { opacity: 0.92; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.92; }
+}
+
+video[data-src]:not([src]) {
+  animation: posterShimmer 2s ease-in-out infinite;
+}
+
 /* Real World RL Results */
 .real-world-results-box {
   margin: 32px 0 24px 0;
