@@ -15,7 +15,7 @@
     gtag('config', 'G-2VH1BKBSE5');
   </script>
   <link rel="icon" href="./figs/favicon.png" type="image/png" sizes="48x48">
-  <link rel="stylesheet" href="style.css?v=36">
+  <link rel="stylesheet" href="style.css?v=37">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
   <script type="importmap">
@@ -51,18 +51,6 @@
           <span class="progress-label">Intro</span>
         </a>
       </div>
-      <div class="progress-item" data-section="expert-policies">
-        <a href="#expert-policies">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Expert Policies</span>
-        </a>
-      </div>
-      <div class="progress-item" data-section="interactive-demo">
-        <a href="#interactive-demo">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Interactive Sim</span>
-        </a>
-      </div>
       <div class="progress-item" data-section="real-world-results">
         <a href="#real-world-results">
           <span class="progress-dot"></span>
@@ -73,6 +61,18 @@
         <a href="#real-world-robustness">
           <span class="progress-dot"></span>
           <span class="progress-label">Real World Robustness</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="expert-policies">
+        <a href="#expert-policies">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Expert Policies</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="interactive-demo">
+        <a href="#interactive-demo">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Interactive Sim</span>
         </a>
       </div>
       <div class="progress-item" data-section="pipeline">
@@ -177,116 +177,10 @@
       </div>
     </div>
 
-    <div class="tagline" id="expert-policies">OmniReset Expert Policies</div>
-    <div class="card-surface expert-policies-section-box">
-      <p class="real-world-common-caption real-world-caption-top expert-policies-description">OmniReset is data generation framework which uses <b>large-scale RL</b> and <b>resets</b> in simulation to solve contact-rich, dexterous manipulation with <b>no reward engineering or demos</b>.</p>
-      <p class="real-world-common-caption expert-policies-follow">OmniReset policies solve tasks from a <b>wide range of initial conditions</b>.</p>
-      <div class="expert-policies-grid">
-        <div class="expert-policy-card">
-          <h4 class="expert-policy-title">Leg Twisting</h4>
-          <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__leg_cut.jpg" preload="none"></video>
-            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-          </div>
-          <p class="expert-policy-caption">Screw the leg into the table.</p>
-        </div>
-        <div class="expert-policy-card">
-          <h4 class="expert-policy-title">Drawer Assembly</h4>
-          <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__drawer_cut.jpg" preload="none"></video>
-            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-          </div>
-          <p class="expert-policy-caption">Insert the drawer into the drawer box.</p>
-        </div>
-        <div class="expert-policy-card">
-          <h4 class="expert-policy-title">Peg Insertion</h4>
-          <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__peg_cut.jpg" preload="none"></video>
-            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-          </div>
-          <p class="expert-policy-caption">Insert the peg in the hole.</p>
-        </div>
-        <div class="expert-policy-card">
-          <h4 class="expert-policy-title">Rectangle on Wall</h4>
-          <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/rectangle_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__rectangle_cut.jpg" preload="none"></video>
-            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-          </div>
-          <p class="expert-policy-caption">Reorient the rectangular block to the target position on the wall.</p>
-        </div>
-        <div class="expert-policy-card">
-          <h4 class="expert-policy-title">Cube Stacking</h4>
-          <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cube_stacking_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__cube_stacking_cut.jpg" preload="none"></video>
-            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-          </div>
-          <p class="expert-policy-caption">Stack the cubes on top of each other.</p>
-        </div>
-        <div class="expert-policy-card">
-          <h4 class="expert-policy-title">Birthday Party</h4>
-          <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cupcake_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__cupcake_cut.jpg" preload="none"></video>
-            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-          </div>
-          <p class="expert-policy-caption">Pick up the cupcake and place it on the plate.</p>
-        </div>
-        <div class="expert-policy-card">
-          <h4 class="expert-policy-title">Leg Twisting (×4)</h4>
-          <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/4leg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__4leg_cut.jpg" preload="none"></video>
-            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-            </button>
-          </div>
-          <p class="expert-policy-caption">Demo only. Runs the leg twisting policy four times from a fixed initial state (no large distribution coverage).</p>
-        </div>
-      </div>
-    </div>
 
-    <div class="card-surface reconstruction-split-section" id="interactive-demo">
-      <div class="interactive-demo-header">
-        <div class="section-heading">Play with the OmniReset policies yourself!</div>
-        <p class="real-world-common-caption">Press <strong>&lsquo;Play&rsquo;</strong> to start a new rollout, and <strong>&lsquo;Disturb&rsquo;</strong> to open the gripper and apply a force perturbation to the object. The policy will attempt to recover.<br>
-        <span class="interactive-demo-camera-hint"><strong>Drag</strong> and <strong>scroll</strong> to rotate and zoom.</span></p>
-      </div>
-
-      <script type="module" src="main.js?v=22"></script>
-
-      <div class="demo-tab-bar">
-        <button class="demo-tab active" data-task="peg">Peg</button>
-        <button class="demo-tab" data-task="leg">Leg</button>
-        <button class="demo-tab" data-task="drawer">Drawer</button>
-      </div>
-      <div id="interactive-demo-container"></div>
-      <div class="demo-controls">
-        <div class="demo-buttons">
-          <button id="playTrajectory" class="demo-btn demo-btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
-            Play
-          </button>
-          <button id="disturb" class="demo-btn demo-btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Disturb
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="tagline" id="real-world-results">Sim2Real Results</div>
-    <div class="card-surface real-world-results-box">
-      <p class="real-world-common-caption real-world-caption-top">We distill OmniReset policies to <b>RGB</b> (three cameras inputs below) and show <b>zero-shot sim2real transfer.</b></p>
+    <div class="card-surface real-world-results-box" id="real-world-results">
+      <p class="real-world-common-caption real-world-caption-top">OmniReset is data generation framework which uses <b>large-scale RL</b> and <b>resets</b> in simulation to solve contact-rich, dexterous manipulation with <b>no reward engineering or demos</b>.</p>
+      <p class="real-world-common-caption">We distill OmniReset policies to <b>RGB</b> (three cameras inputs below) and show <b>zero-shot sim2real transfer.</b></p>
       <div class="real-world-sim-real-grid">
         <div class="robustness-header-row">
           <div class="real-world-grid-header sim-col">Simulation</div>
@@ -408,6 +302,112 @@
         </div>
       </div>
       <p class="real-world-common-caption">Policies recover from perturbations, retry after mistakes, and succeed under randomized target positions.</p>
+    </div>
+
+    <div class="tagline" id="expert-policies">OmniReset Expert Policies</div>
+    <div class="card-surface reconstruction-split-section" id="interactive-demo">
+      <div class="interactive-demo-header">
+        <div class="section-heading">Play with the OmniReset policies yourself!</div>
+        <p class="real-world-common-caption">Press <strong>&lsquo;Play&rsquo;</strong> to start a new rollout, and <strong>&lsquo;Disturb&rsquo;</strong> to open the gripper and apply a force perturbation to the object. The policy will attempt to recover.<br>
+        <span class="interactive-demo-camera-hint"><strong>Drag</strong> and <strong>scroll</strong> to rotate and zoom.</span></p>
+      </div>
+
+      <script type="module" src="main.js?v=22"></script>
+
+      <div class="demo-tab-bar">
+        <button class="demo-tab active" data-task="peg">Peg</button>
+        <button class="demo-tab" data-task="leg">Leg</button>
+        <button class="demo-tab" data-task="drawer">Drawer</button>
+      </div>
+      <div id="interactive-demo-container"></div>
+      <div class="demo-controls">
+        <div class="demo-buttons">
+          <button id="playTrajectory" class="demo-btn demo-btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+            Play
+          </button>
+          <button id="disturb" class="demo-btn demo-btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Disturb
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-surface expert-policies-section-box">
+      <p class="real-world-common-caption real-world-caption-top">OmniReset policies solve tasks from a <b>wide range of initial conditions</b>.</p>
+      <div class="expert-policies-grid">
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Leg Twisting</h4>
+          <div class="real-world-video-frame">
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__leg_cut.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p class="expert-policy-caption">Screw the leg into the table.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Drawer Assembly</h4>
+          <div class="real-world-video-frame">
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__drawer_cut.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p class="expert-policy-caption">Insert the drawer into the drawer box.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Peg Insertion</h4>
+          <div class="real-world-video-frame">
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__peg_cut.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p class="expert-policy-caption">Insert the peg in the hole.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Rectangle on Wall</h4>
+          <div class="real-world-video-frame">
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/rectangle_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__rectangle_cut.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p class="expert-policy-caption">Reorient the rectangular block to the target position on the wall.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Cube Stacking</h4>
+          <div class="real-world-video-frame">
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cube_stacking_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__cube_stacking_cut.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p class="expert-policy-caption">Stack the cubes on top of each other.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Birthday Party</h4>
+          <div class="real-world-video-frame">
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/cupcake_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__cupcake_cut.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p class="expert-policy-caption">Pick up the cupcake and place it on the plate.</p>
+        </div>
+        <div class="expert-policy-card">
+          <h4 class="expert-policy-title">Leg Twisting (×4)</h4>
+          <div class="real-world-video-frame">
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/4leg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__4leg_cut.jpg" preload="none"></video>
+            <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+          </div>
+          <p class="expert-policy-caption">Demo only. Runs the leg twisting policy four times from a fixed initial state (no large distribution coverage).</p>
+        </div>
+      </div>
     </div>
 
     <!-- <div class="tagline">Real vs. Sim</div>
