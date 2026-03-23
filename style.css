@@ -1395,7 +1395,17 @@ details[open] > .code-summary::before {
   font-weight: 600;
   color: var(--text-primary);
   text-align: center;
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
+}
+
+.expert-policies-section-box .expert-policies-description {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.expert-policies-section-box .expert-policies-follow {
+  margin-top: 0;
+  margin-bottom: 24px;
 }
 
 .expert-policies-section-box .expert-policies-grid {
