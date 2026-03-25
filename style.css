@@ -2621,11 +2621,24 @@ video[data-src]:not([src]) {
 
 .demo-viewport {
   position: relative;
+  min-height: 500px;
+}
+
+#interactive-demo-container {
+  min-height: 500px;
+}
+
+#interactive-demo-container canvas {
+  width: 100% !important;
+  border-radius: 12px;
 }
 
 .demo-overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 10;
   display: flex;
   align-items: center;
