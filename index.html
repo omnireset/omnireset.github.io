@@ -389,8 +389,8 @@
     <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
     <div class="reset-distribution-stack">
       <div class="card-surface reset-distribution-block">
-        <p class="real-world-common-caption real-world-caption-top">To generate resets, the user only needs to specify the pose of the object at success, which is easy to obtain from tools like Blender. Our <a href="https://uw-lab.github.io/UWLab/main/source/publications/omnireset/index.html" target="_blank" rel="noopener noreferrer">codebase</a> includes a tutorial on how to do this. From that, reset distributions are generated automatically.</p>
-        <p class="real-world-common-caption reset-distribution-intro-follow">Generated resets include approaching the object, initiating contact, transporting the object to the goal, and traversing near-goal states where contact-rich behaviors such as screwing or insertion occur. See <a href="https://arxiv.org/abs/2603.15789" target="_blank" rel="noopener noreferrer">the paper</a> for more details on how we generate this.</p>
+        <p class="real-world-common-caption real-world-caption-top">OmniReset attempts to expose the robot to a <b>super-set of the contact-rich states</b> that will be encountered when solving the task. This overcomes the exploration bottleneck for RL, enabling PPO to leverage scaled-up simulation (<b>64k+ environments</b>) to search through possible behaviors and stitch together the skills needed for the specific task. We generate the resets shown below.</p>
+        <p class="real-world-common-caption reset-distribution-intro-follow">The user only needs to specify the <b>pose of the object at success</b>, which is easy to obtain from tools like Blender. Our <a href="https://uw-lab.github.io/UWLab/main/source/publications/omnireset/index.html" target="_blank" rel="noopener noreferrer">codebase</a> includes a tutorial on how to do this. From that, reset distributions are <b>generated automatically</b>.</p>
         <div class="reset-distribution-grid">
           <div class="reset-distribution-cell">
             <h4 class="reset-distribution-cell-title">Near Goal</h4>
