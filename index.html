@@ -69,28 +69,16 @@
           <span class="progress-label">Emergent Dexterity</span>
         </a>
       </div>
-      <!-- <div class="progress-item" data-section="real-world-results">
-        <a href="#real-world-results">
+      <div class="progress-item" data-section="expert-policies">
+        <a href="#expert-policies">
           <span class="progress-dot"></span>
-          <span class="progress-label">Sim2Real Results</span>
+          <span class="progress-label">Expert Policies</span>
         </a>
       </div>
-      <div class="progress-item" data-section="real-world-robustness">
-        <a href="#real-world-robustness">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Real World Robustness</span>
-        </a>
-      </div> -->
       <div class="progress-item" data-section="reset-distributions">
         <a href="#reset-distributions">
           <span class="progress-dot"></span>
           <span class="progress-label">Reset Distributions</span>
-        </a>
-      </div>
-      <div class="progress-item" data-section="expert-policies">
-        <a href="#expert-policies">
-          <span class="progress-dot"></span>
-          <span class="progress-label">All Sim Policies</span>
         </a>
       </div>
       <div class="progress-item" data-section="learning-over-time">
@@ -217,7 +205,8 @@
       </div>
     </div>
 
-    <div class="card-surface reconstruction-split-section" id="interactive-demo">
+    <div class="tagline" id="interactive-demo">Interactive Simulation</div>
+    <div class="card-surface reconstruction-split-section">
       <div class="interactive-demo-header">
         <div class="section-heading">Play with the OmniReset policies yourself!</div>
       </div>
@@ -318,200 +307,9 @@
       </div>
     </div>
 
-    <!-- <div class="card-surface real-world-results-box" id="real-world-results">
-      <p class="real-world-common-caption real-world-caption-top">OmniReset is data generation framework which uses <b>large-scale RL</b> and <b>resets</b> in simulation to solve contact-rich, dexterous manipulation with <b>no reward engineering or demos</b>.</p>
-      <p class="real-world-common-caption">We distill OmniReset policies to <b>RGB</b> and show <b>zero-shot sim2real transfer.</b> The three stacked views on the right are <b>policy inputs</b>; the main view is for visualization only.</p>
-      <div class="real-world-sim-real-grid">
-        <div class="robustness-header-row">
-          <div class="real-world-grid-header sim-col">Simulation</div>
-          <div class="real-world-grid-header real-col">Real World</div>
-        </div>
 
-        <div class="robustness-group">
-          <p class="robustness-row-label">Peg Insertion</p>
-          <div class="real-world-grid-row">
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__peg_cut.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_continual_success.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="robustness-group">
-          <p class="robustness-row-label">Table Assembly</p>
-          <div class="real-world-grid-row">
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__leg_cut.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_continual_success.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="robustness-group">
-          <p class="robustness-row-label">Drawer Assembly</p>
-          <div class="real-world-grid-row">
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__drawer_cut.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__drawer__3_16_drawer_eval_continual_success.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
-    <!-- <div class="card-surface real-world-results-box real-world-robustness-box" id="real-world-robustness">
-      <h4 class="real-world-robustness-title">Policy Robustness</h4>
-      <div class="robustness-header-row">
-        <div class="real-world-grid-header">Perturbations</div>
-        <div class="real-world-grid-header">Randomized Target Positions</div>
-      </div>
-      <div class="robustness-group">
-        <p class="robustness-row-label">Peg Insertion</p>
-        <div class="robustness-video-row">
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_perturb_highlights.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_perturb_highlights.jpg" preload="none"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_randomize.jpg" preload="none"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="robustness-group">
-        <p class="robustness-row-label">Table Assembly</p>
-        <div class="robustness-video-row">
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_perturb_highlights.jpg" preload="none"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="real-world-column-video">
-            <div class="real-world-video-frame">
-              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_randomize.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_randomize.jpg" preload="none"></video>
-              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <p class="real-world-common-caption">Policies recover from perturbations, retry after mistakes, and succeed under randomized target positions.</p>
-    </div> -->
-
-    <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
-    <div class="reset-distribution-stack">
-      <div class="card-surface reset-distribution-block">
-        <p class="real-world-common-caption real-world-caption-top">To generate resets, the user only needs to specify the pose of the object at success, which is easy to obtain from tools like Blender. Our <a href="https://uw-lab.github.io/UWLab/main/source/publications/omnireset/index.html" target="_blank" rel="noopener noreferrer">codebase</a> includes a tutorial on how to do this. From that, reset distributions are generated automatically.</p>
-        <p class="real-world-common-caption reset-distribution-intro-follow">Generated resets include approaching the object, initiating contact, transporting the object to the goal, and traversing near-goal states where contact-rich behaviors such as screwing or insertion occur. See <a href="https://arxiv.org/abs/2603.15789" target="_blank" rel="noopener noreferrer">the paper</a> for more details on how we generate this.</p>
-        <div class="reset-distribution-grid">
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Goal</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The object near the goal with the gripper close to the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Grasped</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper grasping the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Object</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectRestingEEGrasped_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper close to the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Reaching</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEAnywhere_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper randomly positioned.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card-surface reset-distribution-block reset-distribution-block--leg-zoom">
-        <p class="real-world-common-caption real-world-caption-top">Our reset distributions zoomed in on leg to show diversity of object-robot configurations.</p>
-        <div class="reset-distribution-grid reset-distribution-grid--leg-zoom">
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Goal</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_fixed.jpg" preload="none"></video>
-            </div>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Grasped</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_fixed.jpg" preload="none"></video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tagline" id="expert-policies">All the Policies we Trained in Sim</div>
+    <div class="tagline" id="expert-policies">Expert Policies</div>
     <div class="card-surface expert-policies-section-box">
       <p class="real-world-common-caption real-world-caption-top">OmniReset scales gracefully to a large number of tasks.</p>
       <div class="expert-policies-grid">
@@ -588,6 +386,73 @@
       </div>
     </div>
 
+    <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
+    <div class="reset-distribution-stack">
+      <div class="card-surface reset-distribution-block">
+        <p class="real-world-common-caption real-world-caption-top">To generate resets, the user only needs to specify the pose of the object at success, which is easy to obtain from tools like Blender. Our <a href="https://uw-lab.github.io/UWLab/main/source/publications/omnireset/index.html" target="_blank" rel="noopener noreferrer">codebase</a> includes a tutorial on how to do this. From that, reset distributions are generated automatically.</p>
+        <p class="real-world-common-caption reset-distribution-intro-follow">Generated resets include approaching the object, initiating contact, transporting the object to the goal, and traversing near-goal states where contact-rich behaviors such as screwing or insertion occur. See <a href="https://arxiv.org/abs/2603.15789" target="_blank" rel="noopener noreferrer">the paper</a> for more details on how we generate this.</p>
+        <div class="reset-distribution-grid">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The object near the goal with the gripper close to the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper grasping the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Object</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectRestingEEGrasped_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper close to the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Reaching</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEAnywhere_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper randomly positioned.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-surface reset-distribution-block reset-distribution-block--leg-zoom">
+        <p class="real-world-common-caption real-world-caption-top">Our reset distributions zoomed in on leg to show diversity of object-robot configurations.</p>
+        <div class="reset-distribution-grid reset-distribution-grid--leg-zoom">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_fixed.jpg" preload="none"></video>
+            </div>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_fixed.jpg" preload="none"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- <div class="tagline">Real vs. Sim</div>
     <section class="slider-section card-surface" id="slider-comparison">
       <div class="section-heading">Interactive Slider Comparison</div>
@@ -636,15 +501,19 @@
 
     <div class="tagline" id="evaluations">Real-World Evaluations</div>
     <div class="card-surface uncut-evaluations-box">
+      <p class="uncut-evaluations-subtitle">The three stacked views on the right are <b>policy inputs</b>; the main view is for visualization only.</p>
       <div class="eval-tab-bar">
         <button class="eval-tab active" data-eval-tab="highlights">Highlights</button>
+        <button class="eval-tab" data-eval-tab="perturbations">Perturbations</button>
+        <button class="eval-tab" data-eval-tab="randomized">Randomized Targets</button>
         <button class="eval-tab" data-eval-tab="failures">Failures</button>
         <button class="eval-tab" data-eval-tab="uncut">Full</button>
+        <button class="eval-tab" data-eval-tab="sim-real">Sim2Real</button>
       </div>
 
       <div class="eval-tab-panel active" id="eval-panel-highlights">
         <p class="uncut-evaluations-subtitle">The most impressive moments from our evaluations, supercut.</p>
-        <div class="uncut-evaluations-grid uncut-evaluations-grid--hero-first">
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
           <div class="uncut-evaluations-cell">
             <h4 class="uncut-evaluations-title">Peg insertion</h4>
             <div class="uncut-evaluations-video-wrap">
@@ -672,9 +541,45 @@
         </div>
       </div>
 
+      <div class="eval-tab-panel" id="eval-panel-perturbations">
+        <p class="uncut-evaluations-subtitle">Policies recover from perturbations and retry after mistakes.</p>
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
+          <div class="uncut-evaluations-cell">
+            <h4 class="uncut-evaluations-title">Peg Insertion</h4>
+            <div class="uncut-evaluations-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_perturb_highlights.mp4" controls playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_perturb_highlights.jpg" preload="none"></video>
+            </div>
+          </div>
+          <div class="uncut-evaluations-cell">
+            <h4 class="uncut-evaluations-title">Table Assembly</h4>
+            <div class="uncut-evaluations-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_perturb_highlights.mp4" controls playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_perturb_highlights.jpg" preload="none"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eval-tab-panel" id="eval-panel-randomized">
+        <p class="uncut-evaluations-subtitle">Policies succeed under randomized target positions.</p>
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
+          <div class="uncut-evaluations-cell">
+            <h4 class="uncut-evaluations-title">Peg Insertion</h4>
+            <div class="uncut-evaluations-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_randomize.mp4" controls playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_randomize.jpg" preload="none"></video>
+            </div>
+          </div>
+          <div class="uncut-evaluations-cell">
+            <h4 class="uncut-evaluations-title">Table Assembly</h4>
+            <div class="uncut-evaluations-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_randomize.mp4" controls playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_randomize.jpg" preload="none"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="eval-tab-panel" id="eval-panel-failures">
         <p class="uncut-evaluations-subtitle">Policy failures supercut from evaluations.</p>
-        <div class="uncut-evaluations-grid uncut-evaluations-grid--hero-first">
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
           <div class="uncut-evaluations-cell">
             <h4 class="uncut-evaluations-title">Peg insertion</h4>
             <div class="uncut-evaluations-video-wrap">
@@ -704,7 +609,7 @@
 
       <div class="eval-tab-panel" id="eval-panel-uncut">
         <p class="uncut-evaluations-subtitle">Full, uncut, continuous evaluations.</p>
-        <div class="uncut-evaluations-grid uncut-evaluations-grid--hero-first">
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
           <div class="uncut-evaluations-cell">
             <h4 class="uncut-evaluations-title">Peg insertion</h4>
             <div class="uncut-evaluations-video-wrap">
@@ -727,6 +632,87 @@
               <video
                 data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_full.mp4"
                 controls playsinline poster="figs/posters/real_eval_videos__drawer__3_16_drawer_eval_full.jpg" preload="none"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="eval-tab-panel" id="eval-panel-sim-real">
+        <p class="uncut-evaluations-subtitle">OmniReset policies distilled to RGB with zero-shot sim2real transfer.</p>
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows" style="max-width:100%;">
+          <div class="uncut-evaluations-cell" style="max-width:100%;">
+            <h4 class="uncut-evaluations-title">Peg Insertion</h4>
+            <div class="robustness-header-row">
+              <div class="real-world-grid-header sim-col">Simulation</div>
+              <div class="real-world-grid-header real-col">Real World</div>
+            </div>
+            <div class="real-world-grid-row">
+              <div class="real-world-grid-cell">
+                <div class="real-world-video-frame">
+                  <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" controls playsinline poster="figs/posters/sim_eval_videos__peg_cut.jpg" preload="none"></video>
+                  <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="real-world-grid-cell">
+                <div class="real-world-video-frame">
+                  <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_continual_success.mp4" controls playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_continual_success.jpg" preload="none"></video>
+                  <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uncut-evaluations-cell" style="max-width:100%;">
+            <h4 class="uncut-evaluations-title">Table Assembly</h4>
+            <div class="robustness-header-row">
+              <div class="real-world-grid-header sim-col">Simulation</div>
+              <div class="real-world-grid-header real-col">Real World</div>
+            </div>
+            <div class="real-world-grid-row">
+              <div class="real-world-grid-cell">
+                <div class="real-world-video-frame">
+                  <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" controls playsinline poster="figs/posters/sim_eval_videos__leg_cut.jpg" preload="none"></video>
+                  <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="real-world-grid-cell">
+                <div class="real-world-video-frame">
+                  <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" controls playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_continual_success.jpg" preload="none"></video>
+                  <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="uncut-evaluations-cell" style="max-width:100%;">
+            <h4 class="uncut-evaluations-title">Drawer Assembly</h4>
+            <div class="robustness-header-row">
+              <div class="real-world-grid-header sim-col">Simulation</div>
+              <div class="real-world-grid-header real-col">Real World</div>
+            </div>
+            <div class="real-world-grid-row">
+              <div class="real-world-grid-cell">
+                <div class="real-world-video-frame">
+                  <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" controls playsinline poster="figs/posters/sim_eval_videos__drawer_cut.jpg" preload="none"></video>
+                  <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="real-world-grid-cell">
+                <div class="real-world-video-frame">
+                  <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_continual_success.mp4" controls playsinline poster="figs/posters/real_eval_videos__drawer__3_16_drawer_eval_continual_success.jpg" preload="none"></video>
+                  <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

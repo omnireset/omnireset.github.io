@@ -1362,9 +1362,18 @@ video[data-src]:not([src]) {
   min-width: 0;
 }
 
-.uncut-evaluations-grid:not(.uncut-evaluations-grid--hero-first) > .uncut-evaluations-cell:last-child:nth-child(odd) {
+.uncut-evaluations-grid:not(.uncut-evaluations-grid--hero-first):not(.uncut-evaluations-grid--rows) > .uncut-evaluations-cell:last-child:nth-child(odd) {
   grid-column: 1 / -1;
   max-width: 50%;
+  justify-self: center;
+}
+
+.uncut-evaluations-grid--rows {
+  grid-template-columns: 1fr !important;
+}
+
+.uncut-evaluations-grid--rows > .uncut-evaluations-cell {
+  max-width: 70%;
   justify-self: center;
 }
 
