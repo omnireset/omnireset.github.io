@@ -51,6 +51,12 @@
           <span class="progress-label">Intro</span>
         </a>
       </div>
+      <div class="progress-item" data-section="interactive-demo">
+        <a href="#interactive-demo">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Interactive Sim</span>
+        </a>
+      </div>
       <div class="progress-item" data-section="real-world-results">
         <a href="#real-world-results">
           <span class="progress-dot"></span>
@@ -67,12 +73,6 @@
         <a href="#expert-policies">
           <span class="progress-dot"></span>
           <span class="progress-label">Expert Policies</span>
-        </a>
-      </div>
-      <div class="progress-item" data-section="interactive-demo">
-        <a href="#interactive-demo">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Interactive Sim</span>
         </a>
       </div>
       <div class="progress-item" data-section="pipeline">
@@ -121,6 +121,10 @@
       <div class="hero-orb" aria-hidden="true"></div>
       <div class="hero-text">OmniReset</div>
       <div class="sub-hero-text">Emergent Dexterity via Diverse Resets and Large-Scale Reinforcement Learning</div>
+
+      <div class="hero-video-wrap">
+        <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/intro_supercut.mp4" autoplay muted loop playsinline preload="none"></video>
+      </div>
 
       <div class="authors">
         <a href="https://patrickyin.me/" target="_blank">Patrick Yin</a><sup>1*</sup>,
@@ -177,6 +181,44 @@
       </div>
     </div>
 
+    <div class="card-surface reconstruction-split-section" id="interactive-demo">
+      <div class="interactive-demo-header">
+        <div class="section-heading">Play with the OmniReset policies yourself!</div>
+      </div>
+
+      <script type="module" src="main.js?v=22"></script>
+
+      <div class="demo-tab-bar">
+        <button class="demo-tab active" data-task="drawer">Drawer</button>
+        <button class="demo-tab" data-task="peg">Peg</button>
+        <button class="demo-tab" data-task="leg">Leg</button>
+      </div>
+      <div class="demo-viewport">
+        <div id="interactive-demo-container"></div>
+        <div class="demo-overlay" id="demoOverlay">
+          <div class="demo-overlay-content">
+            <p class="demo-overlay-instructions">Press <strong>&lsquo;Play&rsquo;</strong> to start a new rollout, and <strong>&lsquo;Disturb&rsquo;</strong> to open the gripper and apply a force perturbation to the object.</p>
+            <p class="demo-overlay-hint"><strong>Drag</strong> and <strong>scroll</strong> to rotate and zoom.</p>
+            <button class="demo-btn demo-btn-primary demo-overlay-play-btn" id="overlayPlayBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+              Play
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-controls">
+        <div class="demo-buttons">
+          <button id="playTrajectory" class="demo-btn demo-btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+            Play
+          </button>
+          <button id="disturb" class="demo-btn demo-btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Disturb
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div class="card-surface real-world-results-box" id="real-world-results">
       <p class="real-world-common-caption real-world-caption-top">OmniReset is data generation framework which uses <b>large-scale RL</b> and <b>resets</b> in simulation to solve contact-rich, dexterous manipulation with <b>no reward engineering or demos</b>.</p>
@@ -305,35 +347,6 @@
     </div>
 
     <div class="tagline" id="expert-policies">OmniReset Expert Policies</div>
-    <div class="card-surface reconstruction-split-section" id="interactive-demo">
-      <div class="interactive-demo-header">
-        <div class="section-heading">Play with the OmniReset policies yourself!</div>
-        <p class="real-world-common-caption">Press <strong>&lsquo;Play&rsquo;</strong> to start a new rollout, and <strong>&lsquo;Disturb&rsquo;</strong> to open the gripper and apply a force perturbation to the object.<br>
-        <span class="interactive-demo-camera-hint"><strong>Drag</strong> and <strong>scroll</strong> to rotate and zoom.</span></p>
-      </div>
-
-      <script type="module" src="main.js?v=22"></script>
-
-      <div class="demo-tab-bar">
-        <button class="demo-tab active" data-task="peg">Peg</button>
-        <button class="demo-tab" data-task="leg">Leg</button>
-        <button class="demo-tab" data-task="drawer">Drawer</button>
-      </div>
-      <div id="interactive-demo-container"></div>
-      <div class="demo-controls">
-        <div class="demo-buttons">
-          <button id="playTrajectory" class="demo-btn demo-btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
-            Play
-          </button>
-          <button id="disturb" class="demo-btn demo-btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Disturb
-          </button>
-        </div>
-      </div>
-    </div>
-
     <div class="card-surface expert-policies-section-box">
       <p class="real-world-common-caption real-world-caption-top">OmniReset policies solve tasks from a <b>wide range of initial conditions</b>.</p>
       <div class="expert-policies-grid">
@@ -729,6 +742,19 @@
       }, { rootMargin: '100% 0px' });
 
       controlsVids.forEach(v => lazyLoadObserver.observe(v));
+    });
+
+    // Interactive demo overlay — dismiss on Play and trigger trajectory
+    document.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('demoOverlay');
+      const overlayBtn = document.getElementById('overlayPlayBtn');
+      const realPlayBtn = document.getElementById('playTrajectory');
+      if (overlay && overlayBtn) {
+        overlayBtn.addEventListener('click', () => {
+          overlay.classList.add('hidden');
+          if (realPlayBtn) realPlayBtn.click();
+        });
+      }
     });
 
     // Fullscreen button on real-world results / robustness videos
