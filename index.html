@@ -15,7 +15,7 @@
     gtag('config', 'G-2VH1BKBSE5');
   </script>
   <link rel="icon" href="./figs/favicon.png" type="image/png" sizes="48x48">
-  <link rel="stylesheet" href="style.css?v=37">
+  <link rel="stylesheet" href="style.css?v=38">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
   <script type="importmap">
@@ -51,13 +51,25 @@
           <span class="progress-label">Intro</span>
         </a>
       </div>
+      <div class="progress-item" data-section="pipeline">
+        <a href="#pipeline">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Pipeline</span>
+        </a>
+      </div>
       <div class="progress-item" data-section="interactive-demo">
         <a href="#interactive-demo">
           <span class="progress-dot"></span>
           <span class="progress-label">Interactive Sim</span>
         </a>
       </div>
-      <div class="progress-item" data-section="real-world-results">
+      <div class="progress-item" data-section="emergent-dexterity">
+        <a href="#emergent-dexterity">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Emergent Dexterity</span>
+        </a>
+      </div>
+      <!-- <div class="progress-item" data-section="real-world-results">
         <a href="#real-world-results">
           <span class="progress-dot"></span>
           <span class="progress-label">Sim2Real Results</span>
@@ -68,23 +80,17 @@
           <span class="progress-dot"></span>
           <span class="progress-label">Real World Robustness</span>
         </a>
-      </div>
-      <div class="progress-item" data-section="expert-policies">
-        <a href="#expert-policies">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Expert Policies</span>
-        </a>
-      </div>
-      <div class="progress-item" data-section="pipeline">
-        <a href="#pipeline">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Pipeline</span>
-        </a>
-      </div>
+      </div> -->
       <div class="progress-item" data-section="reset-distributions">
         <a href="#reset-distributions">
           <span class="progress-dot"></span>
           <span class="progress-label">Reset Distributions</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="expert-policies">
+        <a href="#expert-policies">
+          <span class="progress-dot"></span>
+          <span class="progress-label">All Sim Policies</span>
         </a>
       </div>
       <div class="progress-item" data-section="learning-over-time">
@@ -181,6 +187,36 @@
       </div>
     </div>
 
+    <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
+    <div class="card-surface pipeline-section-box">
+      <p class="real-world-common-caption real-world-caption-top">OmniReset addresses the exploration problem for RL by exposing it a broad coverage of <b>reset states</b> that the robot may encounter when solving the task. We train state-based expert policies with <b>PPO on 64K+ environments</b>, <b>distill to RGB</b> with student-teacher distillation, then deploy the resulting policies to the real world <b>zero-shot</b>.</p>
+      <div class="pipeline-grid">
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
+          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4" autoplay muted loop playsinline
+            poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
+          <p>Automatically generate diverse <b>reset states</b> for PPO.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 2 — Large-Scale State-Based RL Training</div>
+          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/RL+Training/64envs_leg.mp4" autoplay muted loop playsinline
+            poster="figs/posters/RL_Training__64envs_leg.jpg" preload="none"></video>
+          <p>Train <b>PPO with 64K+ environments</b> with extensive dynamics randomizations.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 3 — Distill to Perception</div>
+          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_distillation_videos/policy_cameras_leg.mp4" autoplay muted loop playsinline poster="figs/posters/sim_distillation_videos__policy_cameras_leg.jpg" preload="none"></video>
+          <p>Distill to <b>RGB</b> with extensive visual randomizations.</p>
+        </div>
+        <div class="pipeline-card">
+          <div class="pipeline-step">Step 4 — Deploy</div>
+          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline
+            poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_continual_success.jpg" preload="none"></video>
+          <p><b>Zero-shot</b> sim2real transfer from RGB.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="card-surface reconstruction-split-section" id="interactive-demo">
       <div class="interactive-demo-header">
         <div class="section-heading">Play with the OmniReset policies yourself!</div>
@@ -220,7 +256,69 @@
       </div>
     </div>
 
-    <div class="card-surface real-world-results-box" id="real-world-results">
+    <div class="tagline" id="emergent-dexterity">Emergent Dexterity</div>
+    <div class="emergent-dexterity-stack">
+      <div class="card-surface emergent-dexterity-block">
+        <h3 class="emergent-dexterity-block-title">Robustness and Emergent Retrying Behavior</h3>
+        <p class="real-world-common-caption real-world-caption-top">The policies learned by OmniReset are exceptionally robust, reliably recovering after perturbations and solving the task over the entire workspace.</p>
+        <div class="emergent-dexterity-grid emergent-dexterity-grid--two">
+          <div class="emergent-dexterity-cell">
+            <div class="emergent-dexterity-video-wrap">
+              <video data-src="https://f004.backblazeb2.com/file/omnireset-website/cherry_pick/real_perturb.mp4" autoplay muted loop playsinline preload="none"></video>
+            </div>
+            <p class="emergent-dexterity-caption">Robustness to perturbations</p>
+          </div>
+          <div class="emergent-dexterity-cell">
+            <div class="emergent-dexterity-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/cherry_pick/hard_ic.mp4" autoplay muted loop playsinline preload="none"></video>
+            </div>
+            <p class="emergent-dexterity-caption">Difficult initial conditions at the edges of the workspace</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-surface emergent-dexterity-block">
+        <h3 class="emergent-dexterity-block-title">Non-Prehensile Behaviors</h3>
+        <p class="real-world-common-caption real-world-caption-top">OmniReset policies fully exploit the dynamics of the environment to reorient objects with emergent, non-prehensile skills. Watch the robot reorient the peg using the hole!</p>
+        <div class="emergent-dexterity-grid emergent-dexterity-grid--two">
+          <div class="emergent-dexterity-cell">
+            <div class="emergent-dexterity-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/cherry_pick/sim_peg_supercut_reorient.mp4" autoplay muted loop playsinline preload="none"></video>
+            </div>
+          </div>
+          <div class="emergent-dexterity-cell">
+            <div class="emergent-dexterity-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/cherry_pick/real_nonprehensile.mp4" autoplay muted loop playsinline preload="none"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-surface emergent-dexterity-block">
+        <h3 class="emergent-dexterity-block-title">Diverse Long-Horizon Stitching</h3>
+        <p class="real-world-common-caption real-world-caption-top">OmniReset learns policies which stitch together distinct skills to solve long-horizon multi-phase tasks. Diverse skills naturally emerge from optimization, and <b>we do not specify any task-specific behaviors ahead of time</b>.</p>
+        <div class="emergent-dexterity-grid emergent-dexterity-grid--three">
+          <div class="emergent-dexterity-cell">
+            <div class="emergent-dexterity-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/cherry_pick/drawer_stitching.mp4" autoplay muted loop playsinline preload="none"></video>
+            </div>
+            <p class="emergent-dexterity-caption">avoid obstacle &rarr; flip &rarr; push &rarr; wiggle in</p>
+          </div>
+          <div class="emergent-dexterity-cell">
+            <div class="emergent-dexterity-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/cherry_pick/peg_stitching.mp4" autoplay muted loop playsinline preload="none"></video>
+            </div>
+            <p class="emergent-dexterity-caption">reach &rarr; flip &rarr; insert</p>
+          </div>
+          <div class="emergent-dexterity-cell">
+            <div class="emergent-dexterity-video-wrap">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/cherry_pick/leg_stitching.mp4" autoplay muted loop playsinline preload="none"></video>
+            </div>
+            <p class="emergent-dexterity-caption">reach &rarr; pick &rarr; insert &rarr; release &rarr; twist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card-surface real-world-results-box" id="real-world-results">
       <p class="real-world-common-caption real-world-caption-top">OmniReset is data generation framework which uses <b>large-scale RL</b> and <b>resets</b> in simulation to solve contact-rich, dexterous manipulation with <b>no reward engineering or demos</b>.</p>
       <p class="real-world-common-caption">We distill OmniReset policies to <b>RGB</b> and show <b>zero-shot sim2real transfer.</b> The three stacked views on the right are <b>policy inputs</b>; the main view is for visualization only.</p>
       <div class="real-world-sim-real-grid">
@@ -293,9 +391,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="card-surface real-world-results-box real-world-robustness-box" id="real-world-robustness">
+    <!-- <div class="card-surface real-world-results-box real-world-robustness-box" id="real-world-robustness">
       <h4 class="real-world-robustness-title">Policy Robustness</h4>
       <div class="robustness-header-row">
         <div class="real-world-grid-header">Perturbations</div>
@@ -344,11 +442,78 @@
         </div>
       </div>
       <p class="real-world-common-caption">Policies recover from perturbations, retry after mistakes, and succeed under randomized target positions.</p>
+    </div> -->
+
+    <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
+    <div class="reset-distribution-stack">
+      <div class="card-surface reset-distribution-block">
+        <p class="real-world-common-caption real-world-caption-top">To generate resets, the user only needs to specify the pose of the object at success, which is easy to obtain from tools like Blender. Our <a href="https://uw-lab.github.io/UWLab/main/source/publications/omnireset/index.html" target="_blank" rel="noopener noreferrer">codebase</a> includes a tutorial on how to do this. From that, reset distributions are generated automatically.</p>
+        <p class="real-world-common-caption reset-distribution-intro-follow">Generated resets include approaching the object, initiating contact, transporting the object to the goal, and traversing near-goal states where contact-rich behaviors such as screwing or insertion occur. See <a href="https://arxiv.org/abs/2603.15789" target="_blank" rel="noopener noreferrer">the paper</a> for more details on how we generate this.</p>
+        <div class="reset-distribution-grid">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The object near the goal with the gripper close to the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper grasping the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Object</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectRestingEEGrasped_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper close to the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Reaching</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEAnywhere_speedup.jpg" preload="none"></video>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper randomly positioned.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-surface reset-distribution-block reset-distribution-block--leg-zoom">
+        <p class="real-world-common-caption real-world-caption-top">Our reset distributions zoomed in on leg to show diversity of object-robot configurations.</p>
+        <div class="reset-distribution-grid reset-distribution-grid--leg-zoom">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_fixed.jpg" preload="none"></video>
+            </div>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <video
+                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
+                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_fixed.jpg" preload="none"></video>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="tagline" id="expert-policies">OmniReset Expert Policies</div>
+    <div class="tagline" id="expert-policies">All the Policies we Trained in Sim</div>
     <div class="card-surface expert-policies-section-box">
-      <p class="real-world-common-caption real-world-caption-top">OmniReset policies solve tasks from a <b>wide range of initial conditions</b>.</p>
+      <p class="real-world-common-caption real-world-caption-top">OmniReset scales gracefully to a large number of tasks.</p>
       <div class="expert-policies-grid">
         <div class="expert-policy-card">
           <h4 class="expert-policy-title">Leg Twisting</h4>
@@ -446,103 +611,6 @@
       </div>
       <p class="figure-caption slider-caption"><b>PolaRiS</b> enables zero-shot evaluation in unseen simulation environments that correlates strongly with real-world performance.</p>
     </section> -->
-
-    <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
-    <div class="card-surface pipeline-section-box">
-      <p class="real-world-common-caption real-world-caption-top">OmniReset addresses the exploration problem for RL by exposing it a broad coverage of <b>reset states</b> that the robot may encounter when solving the task. We train state-based expert policies with <b>PPO on 64K+ environments</b>, <b>distill to RGB</b> with student-teacher distillation, then deploy the resulting policies to the real world <b>zero-shot</b>.</p>
-      <div class="pipeline-grid">
-        <div class="pipeline-card">
-          <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
-          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4" autoplay muted loop playsinline
-            poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
-          <p>Automatically generate diverse <b>reset states</b> for PPO.</p>
-        </div>
-        <div class="pipeline-card">
-          <div class="pipeline-step">Step 2 — Large-Scale State-Based RL Training</div>
-          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/RL+Training/64envs_leg.mp4" autoplay muted loop playsinline
-            poster="figs/posters/RL_Training__64envs_leg.jpg" preload="none"></video>
-          <p>Train <b>PPO with 64K+ environments</b> with extensive dynamics randomizations.</p>
-        </div>
-        <div class="pipeline-card">
-          <div class="pipeline-step">Step 3 — Distill to Perception</div>
-          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_distillation_videos/policy_cameras_leg.mp4" autoplay muted loop playsinline poster="figs/posters/sim_distillation_videos__policy_cameras_leg.jpg" preload="none"></video>
-          <p>Distill to <b>RGB</b> with extensive visual randomizations.</p>
-        </div>
-        <div class="pipeline-card">
-          <div class="pipeline-step">Step 4 — Deploy</div>
-          <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline
-            poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_continual_success.jpg" preload="none"></video>
-          <p><b>Zero-shot</b> sim2real transfer from RGB.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
-    <div class="reset-distribution-stack">
-      <div class="card-surface reset-distribution-block">
-        <p class="real-world-common-caption real-world-caption-top">To generate resets, the user only needs to specify the pose of the object at success, which is easy to obtain from tools like Blender. Our <a href="https://uw-lab.github.io/UWLab/main/source/publications/omnireset/index.html" target="_blank" rel="noopener noreferrer">codebase</a> includes a tutorial on how to do this. From that, reset distributions are generated automatically.</p>
-        <p class="real-world-common-caption reset-distribution-intro-follow">Generated resets include approaching the object, initiating contact, transporting the object to the goal, and traversing near-goal states where contact-rich behaviors such as screwing or insertion occur. See <a href="https://arxiv.org/abs/2603.15789" target="_blank" rel="noopener noreferrer">the paper</a> for more details on how we generate this.</p>
-        <div class="reset-distribution-grid">
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Goal</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The object near the goal with the gripper close to the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Grasped</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper grasping the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Object</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectRestingEEGrasped_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper close to the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Reaching</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEAnywhere_speedup.jpg" preload="none"></video>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper randomly positioned.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card-surface reset-distribution-block reset-distribution-block--leg-zoom">
-        <p class="real-world-common-caption real-world-caption-top">Our reset distributions zoomed in on leg to show diversity of object-robot configurations.</p>
-        <div class="reset-distribution-grid reset-distribution-grid--leg-zoom">
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Goal</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_fixed.jpg" preload="none"></video>
-            </div>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Grasped</h4>
-            <div class="reset-distribution-video-wrap">
-              <video
-                data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
-                autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_fixed.jpg" preload="none"></video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="tagline" id="learning-over-time">Visualizing Learning Over Time</div>
     <div class="card-surface learning-over-time-box">

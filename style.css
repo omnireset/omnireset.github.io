@@ -945,6 +945,76 @@ video[data-src]:not([src]) {
   animation: posterShimmer 2s ease-in-out infinite;
 }
 
+/* Emergent Dexterity section */
+.emergent-dexterity-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 0 32px 0;
+}
+
+.emergent-dexterity-block {
+  padding: 28px;
+}
+
+.emergent-dexterity-block-title {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.emergent-dexterity-grid {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.emergent-dexterity-grid--two {
+  grid-template-columns: 1fr 1fr;
+}
+
+.emergent-dexterity-grid--three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 768px) {
+  .emergent-dexterity-grid--two,
+  .emergent-dexterity-grid--three {
+    grid-template-columns: 1fr;
+  }
+}
+
+.emergent-dexterity-cell {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.emergent-dexterity-video-wrap {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: var(--shadow-sm);
+}
+
+.emergent-dexterity-video-wrap video {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.emergent-dexterity-caption {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 12px 0 0 0;
+  text-align: center;
+}
+
 /* Real World RL Results */
 .real-world-results-box {
   margin: 32px 0 24px 0;
