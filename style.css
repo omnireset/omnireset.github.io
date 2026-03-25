@@ -3567,43 +3567,172 @@ video.r2s-video-item {
 /* Responsive */
 @media (max-width: 768px) {
   body {
-    padding: 24px 18px;
+    padding: 16px 10px;
     font-size: 14px;
   }
-  
+
   .hero-text {
-    font-size: 48px;
+    font-size: 42px;
   }
-  
+
   .sub-hero-text {
-    font-size: 20px;
+    font-size: 17px;
   }
-  
+
   .hero-flow {
-    padding: 40px 28px 32px 28px;
-    border-radius: 24px;
+    padding: 32px 16px 28px 16px;
+    border-radius: 20px;
   }
-  
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
   .top-nav {
     padding: 12px 18px;
     gap: 10px;
   }
-  
+
   .nav-links {
     display: none;
   }
-  
+
   .tagline {
-    font-size: 24px;
+    font-size: 22px;
   }
-  
+
   .card-surface {
-    padding: 24px;
-    border-radius: 20px;
+    padding: 16px;
+    border-radius: 16px;
   }
-  
+
   .section-heading {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .eval-tab-bar {
+    flex-wrap: wrap;
+    width: auto;
+  }
+
+  .eval-tab {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .demo-tab-bar {
+    flex-wrap: wrap;
+  }
+
+  .demo-tab {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .demo-viewport {
+    min-height: 320px;
+  }
+
+  .real-world-grid-row,
+  .robustness-header-row {
+    grid-template-columns: 1fr;
+  }
+
+  .uncut-evaluations-grid--rows > .uncut-evaluations-cell,
+  .uncut-evaluations-grid--hero-first .uncut-evaluations-cell:first-child {
+    max-width: 100%;
+  }
+
+  .uncut-evaluations-grid:not(.uncut-evaluations-grid--hero-first):not(.uncut-evaluations-grid--rows) > .uncut-evaluations-cell:last-child:nth-child(odd) {
+    max-width: 100%;
+  }
+
+  .real-world-common-caption {
+    font-size: 14px;
+  }
+
+  .learning-over-time-intro {
+    font-size: 14px;
+  }
+
+  .uncut-evaluations-subtitle {
+    font-size: 14px;
+  }
+
+  .pipeline-card {
+    padding: 18px;
+  }
+
+  .expert-policy-card {
+    padding: 16px;
+  }
+
+  .emergent-dexterity-block {
+    padding: 18px;
+  }
+
+  .emergent-dexterity-video-wrap video {
+    height: auto;
+  }
+
+  .bibtex-code {
+    padding: 16px;
+    font-size: 12px;
+  }
+
+  .bibtex-code code {
+    font-size: 10px;
+  }
+
+  .reset-distribution-cell {
+    padding: 14px;
+  }
+
+  .authors {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text {
+    font-size: 34px;
+  }
+
+  .sub-hero-text {
+    font-size: 15px;
+  }
+
+  .hero-flow {
+    padding: 24px 12px 24px 12px;
+  }
+
+  .cta {
+    font-size: 13px;
+    padding: 10px 16px;
+  }
+
+  .tagline {
+    font-size: 20px;
+  }
+
+  .card-surface {
+    padding: 12px;
+  }
+
+  .pipeline-card {
+    padding: 14px;
+  }
+
+  .pipeline-card video {
+    height: auto;
+  }
+
+  .expert-policy-card .real-world-video-frame video {
+    height: auto;
+  }
+
+  .real-world-grid-cell video {
+    height: auto;
   }
 }
 
