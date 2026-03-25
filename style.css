@@ -47,7 +47,7 @@ body {
     radial-gradient(ellipse 80% 50% at 100% 50%, rgba(147, 51, 234, 0.03) 0%, transparent 50%);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-primary);
-  padding: 48px 28px 48px 28px;
+  padding: 24px 28px 48px 28px;
   position: relative;
   min-height: 100vh;
   line-height: 1.7;
@@ -279,7 +279,7 @@ h1, h2, h3, h4, h5, h6, .section-heading {
 .hero-flow {
   position: relative;
   overflow: hidden;
-  padding: 36px 48px 48px 48px;
+  padding: 24px 48px 40px 48px;
   border-radius: 28px;
   margin-bottom: 40px;
   background: var(--bg-surface);
@@ -380,7 +380,7 @@ h1, h2, h3, h4, h5, h6, .section-heading {
 .hero-video-wrap {
   width: 100%;
   max-width: 960px;
-  margin: 0 auto 32px auto;
+  margin: 0 auto 20px auto;
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(0,0,0,0.10);
