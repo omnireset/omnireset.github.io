@@ -15,6 +15,17 @@
     gtag('config', 'G-2VH1BKBSE5');
   </script>
   <link rel="icon" href="./figs/favicon.png" type="image/png" sizes="48x48">
+  <link rel="preconnect" href="https://omnireset-website.s3.us-west-004.backblazeb2.com">
+  <link rel="preconnect" href="https://f004.backblazeb2.com">
+  <link rel="preconnect" href="https://esm.sh" crossorigin>
+  <link rel="preload" as="video" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/intro_supercut.mp4" type="video/mp4" fetchpriority="high">
+  <!-- Preload interactive demo assets so they're cached by the time Three.js needs them -->
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/env_warehouse.gltf" crossorigin>
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/drawer_bottom.gltf" crossorigin>
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/drawer_box.gltf" crossorigin>
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/sky.hdr" crossorigin>
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/UR5e.json" crossorigin>
+  <link rel="preload" as="fetch" href="proto/omnireset.proto">
   <link rel="stylesheet" href="style.css?v=38">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
@@ -51,16 +62,16 @@
           <span class="progress-label">Intro</span>
         </a>
       </div>
-      <div class="progress-item" data-section="pipeline">
-        <a href="#pipeline">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Pipeline</span>
-        </a>
-      </div>
       <div class="progress-item" data-section="interactive-demo">
         <a href="#interactive-demo">
           <span class="progress-dot"></span>
           <span class="progress-label">Interactive Sim</span>
+        </a>
+      </div>
+      <div class="progress-item" data-section="pipeline">
+        <a href="#pipeline">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Pipeline</span>
         </a>
       </div>
       <div class="progress-item" data-section="emergent-dexterity">
@@ -117,7 +128,7 @@
       <div class="sub-hero-text">Emergent Dexterity via Diverse Resets and Large-Scale Reinforcement Learning</div>
 
       <div class="hero-video-wrap">
-        <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/intro_supercut.mp4" autoplay muted loop playsinline preload="none"></video>
+        <video src="https://omnireset-website.s3.us-west-004.backblazeb2.com/intro_supercut.mp4" autoplay muted loop playsinline preload="auto"></video>
       </div>
 
       <div class="authors">
@@ -175,6 +186,46 @@
       </div>
     </div>
 
+    <div class="tagline" id="interactive-demo">Interactive Simulation</div>
+    <div class="card-surface reconstruction-split-section">
+      <div class="interactive-demo-header">
+        <div class="section-heading">Play with the OmniReset policies yourself!</div>
+      </div>
+
+      <script type="module" src="main.js?v=22"></script>
+
+      <div class="demo-tab-bar">
+        <button class="demo-tab active" data-task="drawer">Drawer</button>
+        <button class="demo-tab" data-task="peg">Peg</button>
+        <button class="demo-tab" data-task="leg">Leg</button>
+      </div>
+      <div class="demo-viewport">
+        <div id="interactive-demo-container"></div>
+        <div class="demo-overlay" id="demoOverlay">
+          <div class="demo-overlay-content">
+            <p class="demo-overlay-instructions">Press <strong>&lsquo;Play&rsquo;</strong> to start a new rollout, and <strong>&lsquo;Disturb&rsquo;</strong> to open the gripper and apply a force perturbation to the object.</p>
+            <p class="demo-overlay-hint"><strong>Drag</strong> and <strong>scroll</strong> to rotate and zoom.</p>
+            <button class="demo-btn demo-btn-primary demo-overlay-play-btn" id="overlayPlayBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+              Play
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="demo-controls">
+        <div class="demo-buttons">
+          <button id="playTrajectory" class="demo-btn demo-btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+            Play
+          </button>
+          <button id="disturb" class="demo-btn demo-btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Disturb
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
     <div class="card-surface pipeline-section-box">
       <p class="real-world-common-caption real-world-caption-top">OmniReset addresses the exploration problem for RL by exposing it a broad coverage of <b>reset states</b> that the robot may encounter when solving the task. We train state-based expert policies with <b>PPO on 64K+ environments</b>, <b>distill to RGB</b> with student-teacher distillation, then deploy the resulting policies to the real world <b>zero-shot</b>.</p>
@@ -221,46 +272,6 @@
             </button>
           </div>
           <p><b>Zero-shot</b> sim2real transfer from RGB.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="tagline" id="interactive-demo">Interactive Simulation</div>
-    <div class="card-surface reconstruction-split-section">
-      <div class="interactive-demo-header">
-        <div class="section-heading">Play with the OmniReset policies yourself!</div>
-      </div>
-
-      <script type="module" src="main.js?v=22"></script>
-
-      <div class="demo-tab-bar">
-        <button class="demo-tab active" data-task="drawer">Drawer</button>
-        <button class="demo-tab" data-task="peg">Peg</button>
-        <button class="demo-tab" data-task="leg">Leg</button>
-      </div>
-      <div class="demo-viewport">
-        <div id="interactive-demo-container"></div>
-        <div class="demo-overlay" id="demoOverlay">
-          <div class="demo-overlay-content">
-            <p class="demo-overlay-instructions">Press <strong>&lsquo;Play&rsquo;</strong> to start a new rollout, and <strong>&lsquo;Disturb&rsquo;</strong> to open the gripper and apply a force perturbation to the object.</p>
-            <p class="demo-overlay-hint"><strong>Drag</strong> and <strong>scroll</strong> to rotate and zoom.</p>
-            <button class="demo-btn demo-btn-primary demo-overlay-play-btn" id="overlayPlayBtn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
-              Play
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="demo-controls">
-        <div class="demo-buttons">
-          <button id="playTrajectory" class="demo-btn demo-btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
-            Play
-          </button>
-          <button id="disturb" class="demo-btn demo-btn-secondary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-            Disturb
-          </button>
         </div>
       </div>
     </div>
@@ -826,12 +837,11 @@
   </div>
 
   <script>
-    // Lazy video loading with poster-first strategy:
-    // Videos ship with data-src + poster + preload=none (no src).
-    // Autoplay videos: load near viewport → play → pause offscreen → unload when far.
-    // Controls videos: load near viewport only (user plays manually).
+    // Sequential video loading + viewport-based playback.
+    // Videos load in DOM order (2 at a time) so top-of-page content is ready first.
+    // Playback starts/stops based on viewport proximity, independent of loading.
     document.addEventListener('DOMContentLoaded', () => {
-      const allLazy = document.querySelectorAll('video[data-src]');
+      const allLazy = [...document.querySelectorAll('video[data-src]')];
       const autoplayVids = [];
       const controlsVids = [];
       allLazy.forEach(v => {
@@ -847,19 +857,47 @@
         if (!v.getAttribute('src') && v.dataset.src) {
           v.src = v.dataset.src;
           v.preload = 'auto';
+          return true;
+        }
+        return false;
+      }
+
+      // --- Sequential preload queue (DOM order, 2 concurrent) ---
+      const queue = allLazy.slice();
+      const MAX_CONCURRENT = 2;
+      let active = 0;
+
+      function pumpQueue() {
+        while (active < MAX_CONCURRENT && queue.length > 0) {
+          const v = queue.shift();
+          if (v.getAttribute('src') || !v.dataset.src) { continue; }
+          active++;
+          v.src = v.dataset.src;
+          v.preload = 'auto';
+          let settled = false;
+          const settle = () => {
+            if (settled) return;
+            settled = true;
+            active--;
+            pumpQueue();
+          };
+          v.addEventListener('canplay', settle, { once: true });
+          v.addEventListener('error', settle, { once: true });
+          setTimeout(settle, 8000);
         }
       }
 
-      function unloadSrc(v) {
-        if (v.getAttribute('src')) {
-          v.pause();
-          v.removeAttribute('src');
-          v.preload = 'none';
-          v.load();
-        }
+      // Wait for interactive demo to finish loading before starting video downloads
+      let queueStarted = false;
+      function startQueue() {
+        if (queueStarted) return;
+        queueStarted = true;
+        pumpQueue();
       }
+      window.addEventListener('demo-ready', startQueue, { once: true });
+      setTimeout(startQueue, 8000);
 
-      // Autoplay videos: play/pause at 50% margin, unload at 200%
+      // --- Viewport play/pause (autoplay videos) ---
       const playObserver = new IntersectionObserver((entries) => {
         entries.forEach(({ target: v, isIntersecting }) => {
           if (isIntersecting) { loadSrc(v); v.play().catch(() => {}); }
@@ -867,22 +905,16 @@
         });
       }, { rootMargin: '50% 0px' });
 
-      const unloadObserver = new IntersectionObserver((entries) => {
-        entries.forEach(({ target: v, isIntersecting }) => {
-          if (!isIntersecting) unloadSrc(v);
-        });
-      }, { rootMargin: '200% 0px' });
+      autoplayVids.forEach(v => playObserver.observe(v));
 
-      autoplayVids.forEach(v => { playObserver.observe(v); unloadObserver.observe(v); });
-
-      // Controls videos: just load src when near viewport
-      const lazyLoadObserver = new IntersectionObserver((entries) => {
+      // --- Controls videos: ensure loaded when near viewport ---
+      const controlsObserver = new IntersectionObserver((entries) => {
         entries.forEach(({ target: v, isIntersecting }) => {
           if (isIntersecting) loadSrc(v);
         });
       }, { rootMargin: '100% 0px' });
 
-      controlsVids.forEach(v => lazyLoadObserver.observe(v));
+      controlsVids.forEach(v => controlsObserver.observe(v));
     });
 
     // Interactive demo overlay — dismiss on Play and trigger trajectory

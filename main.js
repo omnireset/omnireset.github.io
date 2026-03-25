@@ -604,6 +604,7 @@ function ensureEnvReady() {
 }
 
 ensureEnvReady().then(() => env.reset(DEFAULT_INITIAL_STATE));
+getPbTypes();
 
 async function playTrajectory() {
     if (playWebSocket) {
@@ -716,3 +717,4 @@ function animate() {
     renderer.render( scene, camera );
 }
 renderer.setAnimationLoop( animate );
+window.dispatchEvent(new Event('demo-ready'));
