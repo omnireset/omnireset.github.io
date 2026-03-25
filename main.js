@@ -305,9 +305,10 @@ taskTabBar?.querySelectorAll('.demo-tab').forEach((tab) => {
             playWebSocket = null;
         }
         env.stop();
+        insertiveContainer.visible = false;
+        receptiveContainer.visible = false;
         loadTaskObjects(taskId).then(() => {
-            const state = TASK_INITIAL_STATES[taskId];
-            if (state) env.reset(state);
+            playTrajectory();
         });
     });
 });
@@ -319,6 +320,11 @@ envMap.mapping = THREE.EquirectangularReflectionMapping;
 scene.environment = envMap;
 scene.background = envMap;
 scene.backgroundRotation.y = -Math.PI / 2;
+
+const demoLoading = document.getElementById('demoLoading');
+const demoReady = document.getElementById('demoReady');
+if (demoLoading) demoLoading.style.display = 'none';
+if (demoReady) demoReady.classList.remove('demo-ready--hidden');
 
 /**
  * Camera and orbit controls: scroll to zoom, left-drag to orbit around origin.
@@ -659,6 +665,8 @@ async function playTrajectory() {
             if (first) {
                 if (row && typeof row === 'object' && 'shoulder_link_x' in row) {
                     env.reset(row);
+                    insertiveContainer.visible = true;
+                    receptiveContainer.visible = true;
                     first = false;
                 }
             } else {
@@ -677,6 +685,39 @@ async function playTrajectory() {
 
 document.getElementById("playTrajectory").addEventListener("click", playTrajectory);
 
+// Progressive tutorial hints
+const hintDisturb = document.getElementById('hintDisturb');
+const hintDrag = document.getElementById('hintDrag');
+const hintReset = document.getElementById('hintReset');
+const hintTask = document.getElementById('hintTask');
+let tutorialStep = 0; // 0=waiting for play, 1=disturb, 2=drag, 3=reset, 4=task, 5=done
+
+function showHint(el) {
+    if (!el) return;
+    el.classList.remove('demo-hint--hidden');
+    el.classList.add('demo-hint--visible');
+}
+function hideHint(el) {
+    if (!el) return;
+    el.classList.remove('demo-hint--visible');
+    el.classList.add('demo-hint--hidden');
+}
+
+const overlayPlayBtn = document.getElementById("overlayPlayBtn");
+if (overlayPlayBtn) {
+    overlayPlayBtn.addEventListener("click", () => {
+        const overlay = document.getElementById('demoOverlay');
+        const controls = document.getElementById('demoControls');
+        if (overlay) overlay.classList.add('hidden');
+        if (controls) controls.classList.remove('demo-controls--hidden');
+        playTrajectory();
+        if (tutorialStep === 0) {
+            tutorialStep = 1;
+            setTimeout(() => showHint(hintDisturb), 1500);
+        }
+    });
+}
+
 document.getElementById("disturb").addEventListener("click", async () => {
     if (!playWebSocket || playWebSocket.readyState !== WebSocket.OPEN) return;
     try {
@@ -684,6 +725,47 @@ document.getElementById("disturb").addEventListener("click", async () => {
         const msg = pb.ClientToServer.create({ disturb: {} });
         playWebSocket.send(pb.ClientToServer.encode(msg).finish());
     } catch (e) {}
+    if (tutorialStep === 1) {
+        tutorialStep = 2;
+        hideHint(hintDisturb);
+        setTimeout(() => showHint(hintDrag), 800);
+    }
+});
+
+// Dismiss drag hint on first pointer drag or scroll on the canvas
+if (container) {
+    const dismissDragHint = () => {
+        if (tutorialStep === 2) {
+            tutorialStep = 3;
+            hideHint(hintDrag);
+            setTimeout(() => { if (tutorialStep === 3) showHint(hintReset); }, 20000);
+            setTimeout(() => { if (tutorialStep <= 4) { hideHint(hintReset); tutorialStep = Math.max(tutorialStep, 4); showHint(hintTask); } }, 30000);
+        }
+    };
+    container.addEventListener('pointerdown', () => {
+        const onMove = () => { dismissDragHint(); container.removeEventListener('pointermove', onMove); };
+        container.addEventListener('pointermove', onMove, { once: false });
+        container.addEventListener('pointerup', () => container.removeEventListener('pointermove', onMove), { once: true });
+    });
+    container.addEventListener('wheel', dismissDragHint, { once: true });
+}
+
+// Dismiss reset hint when Reset is clicked
+document.getElementById("playTrajectory").addEventListener("click", () => {
+    if (tutorialStep === 3) {
+        tutorialStep = 4;
+        hideHint(hintReset);
+    }
+});
+
+// Dismiss task hint when a tab is clicked
+taskTabBar?.querySelectorAll('.demo-tab').forEach((tab) => {
+    tab.addEventListener('click', () => {
+        if (tutorialStep === 4) {
+            tutorialStep = 5;
+            hideHint(hintTask);
+        }
+    });
 });
 
 // Reusable temporaries for world-to-local conversion (insertive/receptive objects)
