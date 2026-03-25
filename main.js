@@ -28,9 +28,9 @@ new ResizeObserver(() => {
 
 // Task config: insertive and receptive GLTF filenames per task
 const TASK_CONFIG = {
-    drawer: { insertive: `${ASSETS_BASE}/drawer_bottom.gltf`, receptive: `${ASSETS_BASE}/drawer_box.gltf` },
-    peg: { insertive: `${ASSETS_BASE}/peg.gltf`, receptive: `${ASSETS_BASE}/peg_hole.gltf` },
-    leg: { insertive: `${ASSETS_BASE}/square_leg.gltf`, receptive: `${ASSETS_BASE}/square_table_top.gltf` },
+    drawer: { insertive: `${ASSETS_BASE}/drawer_bottom.glb`, receptive: `${ASSETS_BASE}/drawer_box.glb` },
+    peg: { insertive: `${ASSETS_BASE}/peg.glb`, receptive: `${ASSETS_BASE}/peg_hole.glb` },
+    leg: { insertive: `${ASSETS_BASE}/square_leg.glb`, receptive: `${ASSETS_BASE}/square_table_top.glb` },
 };
 
 const DEFAULT_INITIAL_STATE = {
@@ -288,11 +288,11 @@ async function loadTaskObjects(taskId) {
     receptiveContainer.add(receptiveGltf.scene.clone());
 }
 
-// Initial load: use active tab (default peg)
+// Initial load: use active tab (default drawer)
 const taskTabBar = document.querySelector('.demo-tab-bar');
 function getActiveTask() {
     const active = taskTabBar?.querySelector('.demo-tab.active');
-    return active?.dataset.task || 'peg';
+    return active?.dataset.task || 'drawer';
 }
 taskTabBar?.querySelectorAll('.demo-tab').forEach((tab) => {
     tab.addEventListener('click', async () => {
@@ -609,8 +609,7 @@ function ensureEnvReady() {
         });
 }
 
-ensureEnvReady().then(() => env.reset(DEFAULT_INITIAL_STATE));
-getPbTypes();
+ensureEnvReady().then(() => env.reset(TASK_INITIAL_STATES[getActiveTask()] ?? DRAWER_INITIAL_STATE));
 
 async function playTrajectory() {
     if (playWebSocket) {
