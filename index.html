@@ -20,12 +20,12 @@
   <link rel="preconnect" href="https://esm.sh" crossorigin>
   <link rel="preload" as="video" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/intro_supercut.mp4" type="video/mp4" fetchpriority="high">
   <!-- Preload interactive demo assets so they're cached by the time Three.js needs them -->
-  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/env_warehouse.gltf" crossorigin>
-  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/drawer_bottom.gltf" crossorigin>
-  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/drawer_box.gltf" crossorigin>
-  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/sky.hdr" crossorigin>
-  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/UR5e.json" crossorigin>
-  <link rel="preload" as="fetch" href="proto/omnireset.proto">
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/env_warehouse.gltf" crossorigin fetchpriority="high">
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/drawer_bottom.glb" crossorigin fetchpriority="high">
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/drawer_box.glb" crossorigin fetchpriority="high">
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/sky.hdr" crossorigin fetchpriority="high">
+  <link rel="preload" as="fetch" href="https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets/UR5e.json" crossorigin fetchpriority="high">
+  <link rel="preload" as="fetch" href="proto/omnireset.js" crossorigin fetchpriority="high">
   <link rel="stylesheet" href="style.css?v=38">
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <!-- Import map for main.js (Three + protobuf); must match main.js import specifiers -->
@@ -36,7 +36,7 @@
         "three/addons/loaders/HDRLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/HDRLoader.js",
         "three/addons/loaders/GLTFLoader.js": "https://esm.sh/three@r170/examples/jsm/loaders/GLTFLoader.js",
         "three/addons/controls/OrbitControls.js": "https://esm.sh/three@r170/examples/jsm/controls/OrbitControls.js",
-        "protobufjs": "https://esm.sh/protobufjs@7.4.0"
+        "protobufjs/minimal": "https://esm.sh/protobufjs@7.4.0/minimal"
       }
     }
   </script>
@@ -271,8 +271,7 @@
         <div class="pipeline-card">
           <div class="pipeline-step">Step 4 — Deploy</div>
           <div class="real-world-video-frame">
-            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline
-              poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_continual_success.jpg" preload="none"></video>
+            <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/cherry_pick/real_leg_method.mp4" autoplay muted loop playsinline preload="none"></video>
             <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
@@ -894,33 +893,34 @@
       }
 
       // Wait for interactive demo to finish loading before starting video downloads
+      // and viewport-based observers. This ensures sim assets get full bandwidth first.
       let queueStarted = false;
       function startQueue() {
         if (queueStarted) return;
         queueStarted = true;
         pumpQueue();
+
+        // --- Viewport play/pause (autoplay videos) ---
+        const playObserver = new IntersectionObserver((entries) => {
+          entries.forEach(({ target: v, isIntersecting }) => {
+            if (isIntersecting) { loadSrc(v); v.play().catch(() => {}); }
+            else { v.pause(); }
+          });
+        }, { rootMargin: '50% 0px' });
+
+        autoplayVids.forEach(v => playObserver.observe(v));
+
+        // --- Controls videos: ensure loaded when near viewport ---
+        const controlsObserver = new IntersectionObserver((entries) => {
+          entries.forEach(({ target: v, isIntersecting }) => {
+            if (isIntersecting) loadSrc(v);
+          });
+        }, { rootMargin: '100% 0px' });
+
+        controlsVids.forEach(v => controlsObserver.observe(v));
       }
       window.addEventListener('demo-ready', startQueue, { once: true });
       setTimeout(startQueue, 8000);
-
-      // --- Viewport play/pause (autoplay videos) ---
-      const playObserver = new IntersectionObserver((entries) => {
-        entries.forEach(({ target: v, isIntersecting }) => {
-          if (isIntersecting) { loadSrc(v); v.play().catch(() => {}); }
-          else { v.pause(); }
-        });
-      }, { rootMargin: '50% 0px' });
-
-      autoplayVids.forEach(v => playObserver.observe(v));
-
-      // --- Controls videos: ensure loaded when near viewport ---
-      const controlsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(({ target: v, isIntersecting }) => {
-          if (isIntersecting) loadSrc(v);
-        });
-      }, { rootMargin: '100% 0px' });
-
-      controlsVids.forEach(v => controlsObserver.observe(v));
     });
 
     // Overlay dismiss + play is handled by main.js (module) which has direct access to playTrajectory()

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { omnireset as omniProto } from './proto/omnireset.js';
 
 const API_BASE_URL = 'https://ok5l57ql5gmct9-8000.proxy.runpod.net';
 const ASSETS_BASE = 'https://omnireset-website.s3.us-west-004.backblazeb2.com/interactive_assets';
@@ -235,9 +236,17 @@ const DRAWER_INITIAL_STATE = {
 
 const TASK_INITIAL_STATES = { peg: DEFAULT_INITIAL_STATE, leg: LEG_INITIAL_STATE, drawer: DRAWER_INITIAL_STATE };
 
-// Load the base scene (env without insertive/receptive)
+// Kick off all asset downloads in parallel; await them as dependencies are needed.
 const loader = new GLTFLoader();
-const envGltf = await loader.loadAsync(`${ASSETS_BASE}/env_warehouse.gltf`);
+const hdrLoader = new HDRLoader();
+const envGltfPromise = loader.loadAsync(`${ASSETS_BASE}/env_warehouse.gltf`);
+const hdrPromise = hdrLoader.loadAsync(`${ASSETS_BASE}/sky.hdr`);
+// Pre-start default task object downloads so they overlap with the env scene load
+const defaultTaskCfg = TASK_CONFIG['drawer'];
+const drawerInsPromise = loader.loadAsync(defaultTaskCfg.insertive);
+const drawerRecPromise = loader.loadAsync(defaultTaskCfg.receptive);
+
+const envGltf = await envGltfPromise;
 const sceneRoot = envGltf.scene;
 scene.add(sceneRoot);
 
@@ -270,7 +279,10 @@ receptiveContainer.name = 'ReceptiveObject';
 env0.add(receptiveContainer);
 
 // Cache loaded GLTFs by filename so we can switch tasks without re-fetching
-const taskGltfCache = {};
+const taskGltfCache = {
+    [defaultTaskCfg.insertive]: drawerInsPromise,
+    [defaultTaskCfg.receptive]: drawerRecPromise,
+};
 
 async function loadTaskObjects(taskId) {
     const cfg = TASK_CONFIG[taskId];
@@ -314,8 +326,7 @@ taskTabBar?.querySelectorAll('.demo-tab').forEach((tab) => {
 });
 await loadTaskObjects(getActiveTask());
 
-const hdrLoader = new HDRLoader();
-const envMap = await hdrLoader.loadAsync(`${ASSETS_BASE}/sky.hdr`);
+const envMap = await hdrPromise;
 envMap.mapping = THREE.EquirectangularReflectionMapping;
 scene.environment = envMap;
 scene.background = envMap;
@@ -408,24 +419,18 @@ const STATE_KEYS = [
     'rec_x', 'rec_y', 'rec_z', 'rec_qw', 'rec_qx', 'rec_qy', 'rec_qz',
 ];
 
-let _pbTypes = null;
-async function getPbTypes() {
-    if (_pbTypes) return _pbTypes;
-    const mod = await import('protobufjs');
-    const protobuf = mod.default ?? mod;
-    const protoText = await (await fetch('./proto/omnireset.proto')).text();
-    const root = protobuf.parse(protoText).root;
-    _pbTypes = {
-        ClientToServer: root.lookupType('omnireset.ClientToServer'),
-        ServerToClient: root.lookupType('omnireset.ServerToClient'),
-    };
+const _pbTypes = {
+    ClientToServer: omniProto.ClientToServer,
+    ServerToClient: omniProto.ServerToClient,
+};
+function getPbTypes() {
     return _pbTypes;
 }
 
-async function sendPbStop(ws) {
+function sendPbStop(ws) {
     if (!ws || ws.readyState !== WebSocket.OPEN) return;
     try {
-        const pb = await getPbTypes();
+        const pb = getPbTypes();
         const msg = pb.ClientToServer.create({ stop: {} });
         ws.send(pb.ClientToServer.encode(msg).finish());
     } catch (e) {}
@@ -613,12 +618,13 @@ ensureEnvReady().then(() => env.reset(TASK_INITIAL_STATES[getActiveTask()] ?? DR
 
 async function playTrajectory() {
     if (playWebSocket) {
-        await sendPbStop(playWebSocket);
+        sendPbStop(playWebSocket);
         playWebSocket.close();
         playWebSocket = null;
     }
     env.stop();
-    const [, pb] = await Promise.all([ensureEnvReady(), getPbTypes()]);
+    await ensureEnvReady();
+    const pb = getPbTypes();
     env.setSetpointIntervalMs(STREAMING_SETPOINT_INTERVAL_MS);
     const wsUrl = API_BASE_URL.replace(/^http/, 'ws');
     const ws = new WebSocket(`${wsUrl}/ws/play`);
@@ -720,7 +726,7 @@ if (overlayPlayBtn) {
 document.getElementById("disturb").addEventListener("click", async () => {
     if (!playWebSocket || playWebSocket.readyState !== WebSocket.OPEN) return;
     try {
-        const pb = await getPbTypes();
+        const pb = getPbTypes();
         const msg = pb.ClientToServer.create({ disturb: {} });
         playWebSocket.send(pb.ClientToServer.encode(msg).finish());
     } catch (e) {}
