@@ -752,6 +752,7 @@ if (container) {
         container.addEventListener('pointermove', onMove, { once: false });
         container.addEventListener('pointerup', () => container.removeEventListener('pointermove', onMove), { once: true });
     });
+    container.addEventListener('touchmove', dismissDragHint, { once: true });
     container.addEventListener('wheel', dismissDragHint, { once: true });
 }
 
