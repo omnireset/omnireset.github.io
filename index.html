@@ -896,8 +896,18 @@
         }
       }
 
-      // Wait for interactive demo to finish loading before starting video downloads
-      // and viewport-based observers. This ensures sim assets get full bandwidth first.
+      // Controls videos (user-initiated playback) can observe immediately since
+      // they don't auto-download aggressively and won't compete for bandwidth.
+      const controlsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(({ target: v, isIntersecting }) => {
+          if (isIntersecting) loadSrc(v);
+        });
+      }, { rootMargin: '100% 0px' });
+
+      controlsVids.forEach(v => controlsObserver.observe(v));
+
+      // Wait for interactive demo to finish loading before starting autoplay
+      // video downloads and observers. This ensures sim assets get full bandwidth first.
       let queueStarted = false;
       function startQueue() {
         if (queueStarted) return;
@@ -913,15 +923,6 @@
         }, { rootMargin: '50% 0px' });
 
         autoplayVids.forEach(v => playObserver.observe(v));
-
-        // --- Controls videos: ensure loaded when near viewport ---
-        const controlsObserver = new IntersectionObserver((entries) => {
-          entries.forEach(({ target: v, isIntersecting }) => {
-            if (isIntersecting) loadSrc(v);
-          });
-        }, { rootMargin: '100% 0px' });
-
-        controlsVids.forEach(v => controlsObserver.observe(v));
       }
       window.addEventListener('demo-ready', startQueue, { once: true });
       setTimeout(startQueue, 8000);
