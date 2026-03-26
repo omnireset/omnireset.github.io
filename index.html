@@ -460,79 +460,82 @@
     <div class="tagline" id="sim2real">Sim2Real Transfer</div>
     <div class="card-surface uncut-evaluations-box">
       <p class="uncut-evaluations-subtitle">OmniReset policies distilled to RGB with zero-shot sim2real transfer.</p>
-      <div class="uncut-evaluations-grid uncut-evaluations-grid--rows" style="max-width:100%;">
-        <div class="uncut-evaluations-cell" style="max-width:100%;">
-          <h4 class="uncut-evaluations-title">Peg Insertion</h4>
-          <div class="robustness-header-row">
-            <div class="real-world-grid-header sim-col">Simulation</div>
-            <div class="real-world-grid-header real-col">Real World</div>
-          </div>
-          <div class="real-world-grid-row">
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__peg_cut.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
+      <div class="eval-tab-bar" id="s2r-tab-bar">
+        <button class="eval-tab active" data-s2r-tab="peg">Peg Insertion</button>
+        <button class="eval-tab" data-s2r-tab="leg">Table Assembly</button>
+        <button class="eval-tab" data-s2r-tab="drawer">Drawer Assembly</button>
+      </div>
+
+      <div class="eval-tab-panel active" id="s2r-panel-peg">
+        <div class="robustness-header-row">
+          <div class="real-world-grid-header sim-col">Simulation</div>
+          <div class="real-world-grid-header real-col">Real World</div>
+        </div>
+        <div class="real-world-grid-row">
+          <div class="real-world-grid-cell">
+            <div class="real-world-video-frame">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/peg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__peg_cut.jpg" preload="none"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
             </div>
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_continual_success.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
+          </div>
+          <div class="real-world-grid-cell">
+            <div class="real-world-video-frame">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/peg/3_16_peg_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__peg__3_16_peg_eval_continual_success.jpg" preload="none"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
             </div>
           </div>
         </div>
-        <div class="uncut-evaluations-cell" style="max-width:100%;">
-          <h4 class="uncut-evaluations-title">Table Assembly</h4>
-          <div class="robustness-header-row">
-            <div class="real-world-grid-header sim-col">Simulation</div>
-            <div class="real-world-grid-header real-col">Real World</div>
-          </div>
-          <div class="real-world-grid-row">
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__leg_cut.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
+      </div>
+
+      <div class="eval-tab-panel" id="s2r-panel-leg">
+        <div class="robustness-header-row">
+          <div class="real-world-grid-header sim-col">Simulation</div>
+          <div class="real-world-grid-header real-col">Real World</div>
+        </div>
+        <div class="real-world-grid-row">
+          <div class="real-world-grid-cell">
+            <div class="real-world-video-frame">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/leg_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__leg_cut.jpg" preload="none"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
             </div>
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_continual_success.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
+          </div>
+          <div class="real-world-grid-cell">
+            <div class="real-world-video-frame">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/leg/3_16_leg_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__leg__3_16_leg_eval_continual_success.jpg" preload="none"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
             </div>
           </div>
         </div>
-        <div class="uncut-evaluations-cell" style="max-width:100%;">
-          <h4 class="uncut-evaluations-title">Drawer Assembly</h4>
-          <div class="robustness-header-row">
-            <div class="real-world-grid-header sim-col">Simulation</div>
-            <div class="real-world-grid-header real-col">Real World</div>
-          </div>
-          <div class="real-world-grid-row">
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__drawer_cut.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
+      </div>
+
+      <div class="eval-tab-panel" id="s2r-panel-drawer">
+        <div class="robustness-header-row">
+          <div class="real-world-grid-header sim-col">Simulation</div>
+          <div class="real-world-grid-header real-col">Real World</div>
+        </div>
+        <div class="real-world-grid-row">
+          <div class="real-world-grid-cell">
+            <div class="real-world-video-frame">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/sim_eval_videos/drawer_cut.mp4" autoplay muted loop playsinline poster="figs/posters/sim_eval_videos__drawer_cut.jpg" preload="none"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
             </div>
-            <div class="real-world-grid-cell">
-              <div class="real-world-video-frame">
-                <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__drawer__3_16_drawer_eval_continual_success.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
+          </div>
+          <div class="real-world-grid-cell">
+            <div class="real-world-video-frame">
+              <video data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/real_eval_videos/drawer/3_16_drawer_eval_continual_success.mp4" autoplay muted loop playsinline poster="figs/posters/real_eval_videos__drawer__3_16_drawer_eval_continual_success.jpg" preload="none"></video>
+              <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </button>
             </div>
           </div>
         </div>
@@ -696,7 +699,7 @@
 
       <div class="eval-tab-panel active" id="eval-panel-highlights">
         <p class="uncut-evaluations-subtitle">The most impressive moments from our evaluations, supercut.</p>
-        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--hero-first">
           <div class="uncut-evaluations-cell">
             <h4 class="uncut-evaluations-title">Peg insertion</h4>
             <div class="uncut-evaluations-video-wrap">
@@ -762,7 +765,7 @@
 
       <div class="eval-tab-panel" id="eval-panel-failures">
         <p class="uncut-evaluations-subtitle">Policy failures supercut from evaluations.</p>
-        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--hero-first">
           <div class="uncut-evaluations-cell">
             <h4 class="uncut-evaluations-title">Peg insertion</h4>
             <div class="uncut-evaluations-video-wrap">
@@ -792,7 +795,7 @@
 
       <div class="eval-tab-panel" id="eval-panel-uncut">
         <p class="uncut-evaluations-subtitle">Full, uncut, continuous evaluations.</p>
-        <div class="uncut-evaluations-grid uncut-evaluations-grid--rows">
+        <div class="uncut-evaluations-grid uncut-evaluations-grid--hero-first">
           <div class="uncut-evaluations-cell">
             <h4 class="uncut-evaluations-title">Peg insertion</h4>
             <div class="uncut-evaluations-video-wrap">
@@ -954,8 +957,32 @@
 
     // Evaluation tabs (Highlights / Failures / Uncut)
     document.addEventListener('DOMContentLoaded', () => {
-      const tabs = document.querySelectorAll('.eval-tab');
-      const panels = document.querySelectorAll('.eval-tab-panel');
+      const evalBox = document.getElementById('evaluations')?.nextElementSibling;
+      if (evalBox) {
+        const tabs = evalBox.querySelectorAll('.eval-tab[data-eval-tab]');
+        const panels = evalBox.querySelectorAll('.eval-tab-panel[id^="eval-panel-"]');
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            panels.forEach(p => {
+              p.classList.remove('active');
+              p.querySelectorAll('video').forEach(v => v.pause());
+            });
+            tab.classList.add('active');
+            const panel = document.getElementById('eval-panel-' + tab.dataset.evalTab);
+            if (panel) panel.classList.add('active');
+          });
+        });
+      }
+    });
+
+    // Sim2Real transfer tabs
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabBar = document.getElementById('s2r-tab-bar');
+      if (!tabBar) return;
+      const container = tabBar.closest('.uncut-evaluations-box');
+      const tabs = tabBar.querySelectorAll('.eval-tab[data-s2r-tab]');
+      const panels = container.querySelectorAll('.eval-tab-panel[id^="s2r-panel-"]');
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           tabs.forEach(t => t.classList.remove('active'));
@@ -964,7 +991,7 @@
             p.querySelectorAll('video').forEach(v => v.pause());
           });
           tab.classList.add('active');
-          const panel = document.getElementById('eval-panel-' + tab.dataset.evalTab);
+          const panel = document.getElementById('s2r-panel-' + tab.dataset.s2rTab);
           if (panel) panel.classList.add('active');
         });
       });

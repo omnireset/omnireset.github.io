@@ -1573,14 +1573,16 @@ video[data-src]:not([src]) {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .expert-policies-grid {
     grid-template-columns: 1fr;
   }
 }
 
-.expert-policies-grid .expert-policy-card:last-child:nth-child(3n + 1) {
-  grid-column: 2;
+@media (min-width: 901px) {
+  .expert-policies-grid .expert-policy-card:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
 }
 
 .expert-policy-card {
