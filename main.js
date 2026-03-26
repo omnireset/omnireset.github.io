@@ -320,7 +320,8 @@ taskTabBar?.querySelectorAll('.demo-tab').forEach((tab) => {
         insertiveContainer.visible = false;
         receptiveContainer.visible = false;
         loadTaskObjects(taskId).then(() => {
-            playTrajectory();
+            if (tutorialStep > 0) playTrajectory();
+            else { insertiveContainer.visible = true; receptiveContainer.visible = true; }
         });
     });
 });
