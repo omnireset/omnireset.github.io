@@ -80,12 +80,6 @@
           <span class="progress-label">Emergent Dexterity</span>
         </a>
       </div>
-      <div class="progress-item" data-section="expert-policies">
-        <a href="#expert-policies">
-          <span class="progress-dot"></span>
-          <span class="progress-label">Expert Policies</span>
-        </a>
-      </div>
       <div class="progress-item" data-section="reset-distributions">
         <a href="#reset-distributions">
           <span class="progress-dot"></span>
@@ -98,10 +92,16 @@
           <span class="progress-label">Learning Over Time</span>
         </a>
       </div>
+      <div class="progress-item" data-section="expert-policies">
+        <a href="#expert-policies">
+          <span class="progress-dot"></span>
+          <span class="progress-label">Scalable Simulation Training</span>
+        </a>
+      </div>
       <div class="progress-item" data-section="results">
         <a href="#results">
           <span class="progress-dot"></span>
-          <span class="progress-label">Simulation Results</span>
+          <span class="progress-label">Baseline Comparisons</span>
         </a>
       </div>
       <div class="progress-item" data-section="evaluations">
@@ -235,7 +235,7 @@
 
     <div class="tagline" id="pipeline">The OmniReset Pipeline</div>
     <div class="card-surface pipeline-section-box">
-      <p class="real-world-common-caption real-world-caption-top">OmniReset addresses the exploration problem for RL by exposing it to a broad coverage of <b>reset states</b> that the robot may encounter when solving the task. We train state-based expert policies with <b>PPO on 64K+ environments</b>, <b>distill to RGB</b> with student-teacher distillation, then deploy the resulting policies to the real world <b>zero-shot</b>.</p>
+      <p class="real-world-common-caption real-world-caption-top">OmniReset <b>overcomes the exploration bottleneck</b> by automatically generating diverse reset distributions and scaling up RL training. The resulting policies are distilled to RGB and transferred to the real world <b>zero-shot</b>.</p>
       <div class="pipeline-grid">
         <div class="pipeline-card">
           <div class="pipeline-step">Step 1 — Generate Diverse Resets</div>
@@ -257,7 +257,7 @@
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
             </button>
           </div>
-          <p>Train <b>PPO with 64K+ environments</b> with extensive dynamics randomizations.</p>
+          <p>Scale <b>PPO to 64K+ environments</b>.</p>
         </div>
         <div class="pipeline-card">
           <div class="pipeline-step">Step 3 — Distill to Perception</div>
@@ -286,7 +286,7 @@
     <div class="emergent-dexterity-stack">
       <div class="card-surface emergent-dexterity-block">
         <h3 class="emergent-dexterity-block-title">Robustness and Emergent Retrying Behavior</h3>
-        <p class="real-world-common-caption real-world-caption-top">The policies learned by OmniReset are exceptionally robust, reliably recovering after perturbations and solving the task over the entire workspace.</p>
+        <p class="real-world-common-caption real-world-caption-top">OmniReset policies are robust to perturbations and succeed across the entire workspace.</p>
         <div class="emergent-dexterity-grid emergent-dexterity-grid--two">
           <div class="emergent-dexterity-cell">
             <div class="emergent-dexterity-video-wrap">
@@ -314,7 +314,7 @@
       </div>
       <div class="card-surface emergent-dexterity-block">
         <h3 class="emergent-dexterity-block-title">Non-Prehensile Behaviors</h3>
-        <p class="real-world-common-caption real-world-caption-top">OmniReset policies fully exploit the dynamics of the environment to reorient objects with emergent, non-prehensile skills. Watch the robot reorient the peg using the hole!</p>
+        <p class="real-world-common-caption real-world-caption-top">OmniReset discovers non-prehensile skills that exploit environment dynamics&mdash;watch the robot reorient the peg using the hole!</p>
         <div class="emergent-dexterity-grid emergent-dexterity-grid--two">
           <div class="emergent-dexterity-cell">
             <div class="emergent-dexterity-video-wrap">
@@ -340,7 +340,7 @@
       </div>
       <div class="card-surface emergent-dexterity-block">
         <h3 class="emergent-dexterity-block-title">Diverse Long-Horizon Stitching</h3>
-        <p class="real-world-common-caption real-world-caption-top">OmniReset learns policies which stitch together distinct skills to solve long-horizon multi-phase tasks. Diverse skills naturally emerge from optimization, and <b>we do not specify any task-specific behaviors ahead of time</b>.</p>
+        <p class="real-world-common-caption real-world-caption-top">OmniReset stitches together diverse, emergent skills into long-horizon behaviors&mdash;<b>with no task-specific priors</b>.</p>
         <div class="emergent-dexterity-grid emergent-dexterity-grid--three">
           <div class="emergent-dexterity-cell">
             <div class="emergent-dexterity-video-wrap">
@@ -381,7 +381,138 @@
 
 
 
-    <div class="tagline" id="expert-policies">Expert Policies</div>
+    <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
+    <div class="reset-distribution-stack">
+      <div class="card-surface reset-distribution-block">
+        <p class="real-world-common-caption real-world-caption-top">OmniReset aims to cover all <b>contact-rich states</b> the robot might encounter and all <b>potential paths to the goal</b>. Large-scale RL (<b>64K+ environments</b>) then sorts through these options to find successful behaviors for each task.</p>
+        <p class="real-world-common-caption reset-distribution-intro-follow">The user only specifies the <b>pose of the object at success</b>&mdash;from that, we automatically generate the following distributions to cover all reasonable robot-object configurations.</p>
+        <div class="reset-distribution-grid">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <div class="real-world-video-frame">
+                <video
+                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4"
+                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_speedup.jpg" preload="none"></video>
+                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="reset-distribution-caption">The object near the goal with the gripper close to the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <div class="real-world-video-frame">
+                <video
+                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4"
+                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
+                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper grasping the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Object</h4>
+            <div class="reset-distribution-video-wrap">
+              <div class="real-world-video-frame">
+                <video
+                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4"
+                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectRestingEEGrasped_speedup.jpg" preload="none"></video>
+                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper close to the object.</p>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Reaching</h4>
+            <div class="reset-distribution-video-wrap">
+              <div class="real-world-video-frame">
+                <video
+                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4"
+                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEAnywhere_speedup.jpg" preload="none"></video>
+                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </button>
+              </div>
+            </div>
+            <p class="reset-distribution-caption">The robot gripper randomly positioned.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card-surface reset-distribution-block reset-distribution-block--leg-zoom">
+        <p class="real-world-common-caption real-world-caption-top">Our reset distributions zoomed in on leg to show diversity of object-robot configurations.</p>
+        <div class="reset-distribution-grid reset-distribution-grid--leg-zoom">
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Near Goal</h4>
+            <div class="reset-distribution-video-wrap">
+              <div class="real-world-video-frame">
+                <video
+                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
+                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_fixed.jpg" preload="none"></video>
+                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="reset-distribution-cell">
+            <h4 class="reset-distribution-cell-title">Grasped</h4>
+            <div class="reset-distribution-video-wrap">
+              <div class="real-world-video-frame">
+                <video
+                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
+                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_fixed.jpg" preload="none"></video>
+                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="tagline">Real vs. Sim</div>
+    <section class="slider-section card-surface" id="slider-comparison">
+      <div class="section-heading">Interactive Slider Comparison</div>
+      <p class="section-lead">Drag to reveal sim vs real. Use arrows to switch tasks.</p>
+      <div class="slider-task-selector">
+        <button class="slider-nav-btn" id="slider-prev">‹</button>
+        <span class="slider-task-name" id="slider-task-name">Food Bussing</span>
+        <button class="slider-nav-btn" id="slider-next">›</button>
+      </div>
+      <div class="slider-wrapper">
+        <video class="slider-video" id="slider-sim-video" src="./assets/videos/sim_rollouts/fruitbus.mp4" autoplay muted loop playsinline></video>
+        <div class="slider-overlay">
+          <video class="slider-video" id="slider-real-video" src="./assets/videos/real_rollouts/fruitbus.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="slider-handle"></div>
+        <input type="range" class="slider-input" min="0" max="100" value="50" aria-label="Reveal real or simulated video">
+        <div class="slider-labels">
+          <span class="slider-label-real">Real</span>
+          <span class="slider-label-sim">Sim</span>
+        </div>
+      </div>
+      <p class="figure-caption slider-caption"><b>PolaRiS</b> enables zero-shot evaluation in unseen simulation environments that correlates strongly with real-world performance.</p>
+    </section> -->
+
+    <div class="tagline" id="learning-over-time">Visualizing Learning Over Time</div>
+    <div class="card-surface learning-over-time-box">
+      <p class="learning-over-time-intro" style="text-align:center;">OmniReset requires <b>no curricula or reward shaping</b>&mdash;just diverse resets and large-scale compute. PPO naturally learns backwards from near-goal states to the full workspace.</p>
+      <div class="learning-over-time-video-wrap">
+        <video
+          data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/progress/Progression+simple.mp4"
+          controls playsinline poster="figs/posters/progress__Progression_simple.jpg" preload="none"></video>
+      </div>
+    </div>
+
+    <div class="tagline" id="expert-policies">Scalable Simulation Training</div>
     <div class="card-surface expert-policies-section-box">
       <p class="real-world-common-caption real-world-caption-top">OmniReset scales gracefully to a large number of tasks.</p>
       <div class="expert-policies-grid">
@@ -543,138 +674,7 @@
       </div>
     </div>
 
-    <div class="tagline" id="reset-distributions">Digging into the Reset Distributions</div>
-    <div class="reset-distribution-stack">
-      <div class="card-surface reset-distribution-block">
-        <p class="real-world-common-caption real-world-caption-top">OmniReset attempts to expose the robot to a <b>super-set of the contact-rich states</b> that will be encountered when solving the task. This overcomes the exploration bottleneck for RL, enabling PPO to leverage scaled-up simulation (<b>64k+ environments</b>) to search through possible behaviors and stitch together the skills needed for the specific task. We generate the resets shown below.</p>
-        <p class="real-world-common-caption reset-distribution-intro-follow">The user only needs to specify the <b>pose of the object at success</b>, which is easy to obtain from tools like Blender. Our <a href="https://uw-lab.github.io/UWLab/main/source/publications/omnireset/index.html" target="_blank" rel="noopener noreferrer">codebase</a> includes a tutorial on how to do this. From that, reset distributions are <b>generated automatically</b>.</p>
-        <div class="reset-distribution-grid">
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Goal</h4>
-            <div class="reset-distribution-video-wrap">
-              <div class="real-world-video-frame">
-                <video
-                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_speedup.mp4"
-                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_speedup.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-            <p class="reset-distribution-caption">The object near the goal with the gripper close to the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Grasped</h4>
-            <div class="reset-distribution-video-wrap">
-              <div class="real-world-video-frame">
-                <video
-                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_speedup.mp4"
-                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_speedup.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper grasping the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Object</h4>
-            <div class="reset-distribution-video-wrap">
-              <div class="real-world-video-frame">
-                <video
-                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectRestingEEGrasped_speedup.mp4"
-                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectRestingEEGrasped_speedup.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper close to the object.</p>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Reaching</h4>
-            <div class="reset-distribution-video-wrap">
-              <div class="real-world-video-frame">
-                <video
-                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEAnywhere_speedup.mp4"
-                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEAnywhere_speedup.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-            <p class="reset-distribution-caption">The robot gripper randomly positioned.</p>
-          </div>
-        </div>
-      </div>
-      <div class="card-surface reset-distribution-block reset-distribution-block--leg-zoom">
-        <p class="real-world-common-caption real-world-caption-top">Our reset distributions zoomed in on leg to show diversity of object-robot configurations.</p>
-        <div class="reset-distribution-grid reset-distribution-grid--leg-zoom">
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Near Goal</h4>
-            <div class="reset-distribution-video-wrap">
-              <div class="real-world-video-frame">
-                <video
-                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectPartiallyAssembledEEGrasped_fixed.mp4"
-                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectPartiallyAssembledEEGrasped_fixed.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="reset-distribution-cell">
-            <h4 class="reset-distribution-cell-title">Grasped</h4>
-            <div class="reset-distribution-video-wrap">
-              <div class="real-world-video-frame">
-                <video
-                  data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/reset_videos/ObjectAnywhereEEGrasped_fixed.mp4"
-                  autoplay muted loop playsinline poster="figs/posters/reset_videos__ObjectAnywhereEEGrasped_fixed.jpg" preload="none"></video>
-                <button type="button" class="real-world-fs-btn" aria-label="Fullscreen video" title="Fullscreen">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- <div class="tagline">Real vs. Sim</div>
-    <section class="slider-section card-surface" id="slider-comparison">
-      <div class="section-heading">Interactive Slider Comparison</div>
-      <p class="section-lead">Drag to reveal sim vs real. Use arrows to switch tasks.</p>
-      <div class="slider-task-selector">
-        <button class="slider-nav-btn" id="slider-prev">‹</button>
-        <span class="slider-task-name" id="slider-task-name">Food Bussing</span>
-        <button class="slider-nav-btn" id="slider-next">›</button>
-      </div>
-      <div class="slider-wrapper">
-        <video class="slider-video" id="slider-sim-video" src="./assets/videos/sim_rollouts/fruitbus.mp4" autoplay muted loop playsinline></video>
-        <div class="slider-overlay">
-          <video class="slider-video" id="slider-real-video" src="./assets/videos/real_rollouts/fruitbus.mp4" autoplay muted loop playsinline></video>
-        </div>
-        <div class="slider-handle"></div>
-        <input type="range" class="slider-input" min="0" max="100" value="50" aria-label="Reveal real or simulated video">
-        <div class="slider-labels">
-          <span class="slider-label-real">Real</span>
-          <span class="slider-label-sim">Sim</span>
-        </div>
-      </div>
-      <p class="figure-caption slider-caption"><b>PolaRiS</b> enables zero-shot evaluation in unseen simulation environments that correlates strongly with real-world performance.</p>
-    </section> -->
-
-    <div class="tagline" id="learning-over-time">Visualizing Learning Over Time</div>
-    <div class="card-surface learning-over-time-box">
-      <p class="learning-over-time-intro">Unlike many state-of-the-art approaches, OmniReset does not rely on curricula to stabilize and accelerate learning. Here we visualize how learning for OmniReset progresses over time. We observe that the diverse resets OmniReset provides enable PPO to naturally solve the problem backwards, first learning to succeed from near-goal states and eventually learning to succeed from the entire search space. This behavior is entirely emergent from our diverse resets and large-scale compute and optimization.</p>
-      <div class="learning-over-time-video-wrap">
-        <video
-          data-src="https://omnireset-website.s3.us-west-004.backblazeb2.com/progress/Progression+simple.mp4"
-          controls playsinline poster="figs/posters/progress__Progression_simple.jpg" preload="none"></video>
-      </div>
-    </div>
-
-    <div class="tagline" id="results">Simulation Results</div>
+    <div class="tagline" id="results">Baseline Comparisons</div>
     <div class="card-surface scatter-card reset-distributions-plots">
       <div class="reset-plot-item">
         <p class="reset-plot-intro">We compare OmniReset to strong RL baselines on easy (restricted initial conditions) and hard (full workspace) variants of each task. Baselines rarely succeed on hard settings. The scatter plot shows successful initial conditions for OmniReset (left) and the strongest baseline <b>Demo Curriculum</b> (right) trained on the hard version of the table assembly task. Demo Curriculum uses a success-weighted autocurriculum to sample reset states from demonstrations, with PPO as the base RL algorithm.</p>

@@ -1335,17 +1335,17 @@ video[data-src]:not([src]) {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  border-radius: 16px;
-  overflow: hidden;
+  border-radius: 4px;
+  overflow: visible;
   background: #000;
   box-shadow: var(--shadow-sm);
 }
 
 .learning-over-time-video-wrap video {
   width: 100%;
-  max-height: min(75vh, 800px);
   height: auto;
   display: block;
+  border-radius: 4px;
 }
 
 /* Uncut evaluations (full-length real eval videos) */
