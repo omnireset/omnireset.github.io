@@ -2781,6 +2781,24 @@ video[data-src]:not([src]) {
   opacity: 1;
 }
 
+.demo-credit {
+  text-align: right;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 12px 4px 0;
+  line-height: 1.4;
+}
+
+.demo-credit a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.demo-credit a:hover {
+  text-decoration: underline;
+  color: var(--honey-bronze);
+}
+
 .demo-overlay-content {
   text-align: center;
   max-width: 800px;
